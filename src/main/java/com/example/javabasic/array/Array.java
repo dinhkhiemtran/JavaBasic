@@ -2,26 +2,16 @@ package com.example.javabasic.array;
 
 public class Array {
 
-    public static int[] initArrayInt(){
-        int[] array = new int[10];
-        return array;
-    }
-
-    public static String[] intArrayString(){
-        String[] array = new String[5];
-        return array;
-    }
-
-    public static int[] addArrayInt(){
-        int[] array = initArrayInt();
+    public  int[] addArrayInt(){
+        int[] array =  new int[10];
         for(int i = 1; i < array.length ; i++){
             array[i] = i;
         }
         return array;
     }
 
-    public static String[] addArrayString(){
-        String[] array = intArrayString();
+    public  String[] addArrayString(){
+        String[] array = new String[5];
         array[0] = "Java";
         array[1] = "Javascript";
         array[2] = "Python";
@@ -30,7 +20,7 @@ public class Array {
         return array;
     }
 
-    public static void printArrayInt(){
+    public  void printArrayInt(){
         int[] array = addArrayInt();
         System.out.print("Array Int: ");
         for(Integer index : array){
@@ -40,7 +30,7 @@ public class Array {
         System.out.println();
     }
 
-    public static void printArrayString(){
+    public  void printArrayString(){
         String[] array = addArrayString();
         System.out.print("Array String: ");
         for(int i = 0 ; i < array.length; i++){
@@ -50,26 +40,13 @@ public class Array {
         System.out.println();
     }
 
-    public static int lengthOfArrayInt(){
+    public  int lengthOfArrayInt(){
         int[] array = addArrayInt();
         return array.length;
     }
 
-    public static int lengthOfArrayString(){
+    public  int lengthOfArrayString(){
         String[] array = addArrayString();
         return array.length;
-    }
-
-    public static void load(){
-        int lengthOfArrayInt = lengthOfArrayInt();
-        int lengthOfArrayString = lengthOfArrayString();
-        printArrayInt();
-        printArrayString();
-        System.out.println("Length of Array Int: " + lengthOfArrayInt);
-        System.out.println("Length of Array Int: " + lengthOfArrayString);
-    }
-
-    public static void main(String[] args) {
-        load();
     }
 }
