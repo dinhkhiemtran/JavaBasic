@@ -49,6 +49,18 @@ public class MultidimensionalArray {
         System.out.println();
     }
 
+    public int[][] copy2dArraysUsingLoop(){
+       int[][] array = create2DArray();
+       int[][] copyArray = new int[array.length][];
+       for(int i = 0 ; i < copyArray.length; i++){
+           copyArray[i] = new int[array[i].length];
+           for (int j = 0; j < copyArray[i].length; ++j) {
+               copyArray[i][j] = array[i][j];
+           }
+       }
+       return copyArray;
+    }
+
     private void load(){
         lengthOfRow();
         printAllElementsOf2dArrayUsingLoop();

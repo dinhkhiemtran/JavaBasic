@@ -38,4 +38,19 @@ class ArrayTest {
         int lengthOfStringArrayActual = array.lengthOfArrayString();
         Assert.assertEquals(lengthOfStringArrayExpect,lengthOfStringArrayActual);
     }
+
+    @Test
+    void copyArraysTest(){
+        int[] arrayCopyExpect = array.addArrayInt();
+        int[] arrayActual = array.addArrayInt();
+        assertArrayEquals(arrayCopyExpect,arrayActual);
+    }
+
+    @Test
+    void usingLoopToCopyArraysTest(){
+        int[] arrayExpect = {0,1,2,3,4,5,6,7,8,9};
+        int[] arrayActual = array.addArrayInt();
+        assertArrayEquals(arrayExpect,arrayActual);
+    }
+
 }

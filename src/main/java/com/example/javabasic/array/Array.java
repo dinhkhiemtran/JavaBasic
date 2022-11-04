@@ -49,4 +49,19 @@ public class Array {
         String[] array = addArrayString();
         return array.length;
     }
+
+    private int[] copyArrays(){
+        int[] array = addArrayInt();
+        int[] arrayCopy = array;
+        return arrayCopy;
+    }
+
+    private int[] usingLoopToCopyArrays(){
+        int[] array = addArrayInt();
+        int[] arrayCopy = new int[10];
+        for(int i = 0 ; i < array.length; i++){
+            array[i] = arrayCopy[i];
+        }
+        return arrayCopy;
+    }
 }
