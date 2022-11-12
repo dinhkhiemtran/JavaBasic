@@ -65,7 +65,7 @@ public class Stack extends Vector {
                String elements = stack.pop();
                System.out.println("Pop: " + elements);
             }
-            System.out.println("Empty! ");
+            System.out.println(stack);
         }catch (Exception e){
             System.out.println("Exception: " + e.getMessage());
         }
@@ -73,6 +73,7 @@ public class Stack extends Vector {
     public void load(){
         popElementsFromStack();
         System.out.println(searchPositionOfAStack());
+        System.out.println(popAnElementFormStack());
     }
 
     public static void main(String[] args) {
