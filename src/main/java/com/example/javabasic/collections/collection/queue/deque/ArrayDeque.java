@@ -210,7 +210,7 @@ public class ArrayDeque implements Deque {
         Deque<String> arrayDeque = addElementToArrayDequeString();
         Scanner scanner = new Scanner(System.in);
         try{
-            System.out.print("Input an element that is string type to add to head of array deque: ");
+            System.out.print("Input (STRING) an element to add to first of array deque: ");
             String element = scanner.next();
             arrayDeque.addFirst(element);
         }catch (InputMismatchException inputMismatchException){
@@ -225,7 +225,7 @@ public class ArrayDeque implements Deque {
         Deque<Integer> deque = addElementToArrayDequeInteger();
         Scanner scanner = new Scanner(System.in);
         try{
-            System.out.print("Input an element that is number type to add to first element of array deque: ");
+            System.out.print("Input (Integer) an element to add to FIRST element of array deque: ");
             Integer element = scanner.nextInt();
             deque.offerFirst(element);
         }catch (InputMismatchException inputMismatchException){
@@ -240,7 +240,7 @@ public class ArrayDeque implements Deque {
         Deque<String> deque = addElementToArrayDequeString();
         Scanner scanner = new Scanner(System.in);
         try{
-            System.out.print("Input an element that is string to add to last element of array deque: ");
+            System.out.print("Input (STRING) an element to add to LAST element of array deque: ");
             String element = scanner.next();
             deque.addLast(element);
         }catch (InputMismatchException in){
@@ -255,7 +255,7 @@ public class ArrayDeque implements Deque {
         Deque<Integer> deque = addElementToArrayDequeInteger();
         Scanner scanner = new Scanner(System.in);
         try{
-            System.out.print("Input an element that is string to add to last element of array deque: ");
+            System.out.print("Input (INTEGER) an element to add to LAST element of array deque: ");
             Integer element = scanner.nextInt();
             deque.offerLast(element);
         }catch (InputMismatchException in){
@@ -324,7 +324,7 @@ public class ArrayDeque implements Deque {
         Scanner scanner = new Scanner(System.in);
         boolean isSuccess;
         try{
-            System.out.print("Input a position of element into array de queue string that you want to remove: ");
+            System.out.print("Input a POSITION of element into ArrayDeque STRING that you want to remove: ");
             int pos = scanner.nextInt();
             isSuccess = deque.remove(pos);
             if (isSuccess){
@@ -343,7 +343,7 @@ public class ArrayDeque implements Deque {
         Scanner scanner = new Scanner(System.in);
         boolean isSuccess;
         try{
-            System.out.print("Input position of element in array deque integer that you want to remove: ");
+            System.out.print("Input POSITION of element in ArrayDeque INTEGER that you want to remove: ");
             int pos = scanner.nextInt();
             isSuccess = deque.remove(pos);
             if(isSuccess){
@@ -473,7 +473,26 @@ public class ArrayDeque implements Deque {
     }
 
     private void load(){
-        System.out.print(addFirstElementToArrayDequeString());
+        Deque<Integer> dequeInteger = addElementToArrayDequeInteger();
+        Deque<String> dequeString = addElementToArrayDequeString();
+        printUsingForEach(dequeString);
+        printUsingIterator(dequeInteger);
+        System.out.println(addFirstElementToArrayDequeString());
+        System.out.println(getHeadElementOfArrayDequeString());
+        System.out.println(getHeadElementOfArrayDequeInteger());
+        System.out.println(getLastElementOfArrayDequeString());
+        System.out.println(getLastElementOfArrayDequeInteger());
+        System.out.println(removeAnElementSpecifiedOfArrayDequeString());
+        System.out.println(removeAnElementSpecifiedOfArrayDequeInteger());
+        System.out.println(pollAnElementSpecifiedOfArrayDequeString());
+        System.out.println(pollAnElementSpecifiedOfArrayDequeInteger());
+        System.out.println(removeFirstElementFromArrayDequeString());
+        System.out.println(removeFirstElementFromArrayDequeInteger());
+        System.out.println(removeLastElementFromArrayDequeString());
+        System.out.println(removeLastElementFromArrayDequeInteger());
+        System.out.println(removeAllElementsFromArrayDequeString());
+        System.out.println(removeAllElementsFromArrayDequeInteger());
+        System.out.println(removeAllElementsFromArrayDequeInteger());
     }
 
     public static void main(String[] args) {
