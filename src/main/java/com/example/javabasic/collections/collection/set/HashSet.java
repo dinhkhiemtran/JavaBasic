@@ -112,9 +112,9 @@ public class HashSet implements Set {
                 }
             }
         } catch (InputMismatchException inputMismatchException) {
-            System.out.print("Exception: " + "Input wrong type.");
+            System.out.println("Exception: " + "Input wrong type.");
         } catch (Exception ex) {
-            System.out.print("Exception: " + ex.getMessage());
+            System.out.println("Exception: " + ex.getMessage());
         }
         return hashSet;
     }
@@ -131,7 +131,7 @@ public class HashSet implements Set {
                 }
             }
         } catch (InputMismatchException inputMismatchException) {
-            System.out.print("Exception: " + "Input Wrong type");
+            System.out.println("Exception: " + "Input Wrong type");
         } catch (Exception ex) {
             System.out.println("Exception: " + ex.getMessage());
         }
@@ -144,13 +144,13 @@ public class HashSet implements Set {
         try {
             if (hashSet != null) {
                 if (!hashSet.isEmpty()) {
-                    System.out.print("Input element that you want to remove from hash set integer: ");
+                    System.out.println("Input element that you want to remove from hash set integer: ");
                     Integer element = scanner.nextInt();
                     hashSet.remove(element);
                 }
             }
         } catch (InputMismatchException inputMismatchException) {
-            System.out.print("Exception: " + "Input Wrong type");
+            System.out.println("Exception: " + "Input Wrong type");
         } catch (Exception ex) {
             System.out.println("Exception: " + ex.getMessage());
         }
