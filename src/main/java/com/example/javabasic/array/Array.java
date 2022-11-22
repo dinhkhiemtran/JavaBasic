@@ -2,7 +2,7 @@ package com.example.javabasic.array;
 
 public class Array {
 
-    public  int[] addArrayInt(){
+    public  int[] addElementToArrayInt(){
         int[] array =  new int[10];
         for(int i = 1; i < array.length ; i++){
             array[i] = i;
@@ -10,7 +10,7 @@ public class Array {
         return array;
     }
 
-    public  String[] addArrayString(){
+    public  String[] addElementToArrayString(){
         String[] array = new String[5];
         array[0] = "Java";
         array[1] = "Javascript";
@@ -21,7 +21,7 @@ public class Array {
     }
 
     public  void printArrayInt(){
-        int[] array = addArrayInt();
+        int[] array = addElementToArrayInt();
         System.out.print("Array Int: ");
         for(Integer index : array){
             System.out.print(index);
@@ -31,7 +31,7 @@ public class Array {
     }
 
     public  void printArrayString(){
-        String[] array = addArrayString();
+        String[] array = addElementToArrayString();
         System.out.print("Array String: ");
         for(int i = 0 ; i < array.length; i++){
             System.out.print(array[i]);
@@ -41,23 +41,23 @@ public class Array {
     }
 
     public  int lengthOfArrayInt(){
-        int[] array = addArrayInt();
+        int[] array = addElementToArrayInt();
         return array.length;
     }
 
     public  int lengthOfArrayString(){
-        String[] array = addArrayString();
+        String[] array = addElementToArrayString();
         return array.length;
     }
 
     private int[] copyArrays(){
-        int[] array = addArrayInt();
+        int[] array = addElementToArrayInt();
         int[] arrayCopy = array;
         return arrayCopy;
     }
 
     private int[] usingLoopToCopyArrays(){
-        int[] array = addArrayInt();
+        int[] array = addElementToArrayInt();
         int[] arrayCopy = new int[10];
         for(int i = 0 ; i < array.length; i++){
             array[i] = arrayCopy[i];

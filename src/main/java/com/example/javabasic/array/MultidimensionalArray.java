@@ -11,7 +11,7 @@ public class MultidimensionalArray {
        return array;
    }
 
-   public String[][] create2DStringArray(){
+   public String[][] create2DArrayString(){
        String[][] array = {
                {"Java","Javascript","Python"},
                {"C#","C++","C"},
@@ -39,7 +39,7 @@ public class MultidimensionalArray {
    }
 
     public void printAllElementsOf2dStringArrayUsingForEach() {
-        String[][] array = create2DStringArray();
+        String[][] array = create2DArrayString();
         for(String[] innerArray : array){
             for(String data : innerArray){
                 System.out.print(data);
