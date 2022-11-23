@@ -148,7 +148,7 @@ public class LinkedList implements List {
                 }
             }
         }catch (InputMismatchException e){
-            System.out.println("Wrong Type ");
+            System.out.println("Input wrong Type ");
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -192,11 +192,11 @@ public class LinkedList implements List {
                 if(!linkedList.isEmpty()){
                     element = linkedList.remove(pos);
                 }else {
-                    return "Empty!";
+                    return "Empty.";
                 }
             }
         }catch (InputMismatchException in){
-            System.out.print("Wrong Type");
+            System.out.print("Input wrong Type");
         }catch (Exception ex){
             System.out.print(ex.getMessage());
         }
@@ -210,7 +210,7 @@ public class LinkedList implements List {
             if(!linkedList.isEmpty()){
                 linkedList.clear();
             }else {
-                System.out.println("Empty");
+                System.out.println("Empty.");
             }
         }
         print(linkedList);
