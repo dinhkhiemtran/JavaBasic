@@ -69,7 +69,7 @@ public class HashMap implements Map {
         return null;
     }
 
-    public Map<String, Integer> createHashMap(){
+    public Map<String, Integer> createAHashMap(){
         Map<String,Integer> hashMap = new java.util.HashMap<>(CAPACITY, loadFactor);
         return hashMap;
     }
@@ -78,9 +78,9 @@ public class HashMap implements Map {
         return hashMap.size() >= CAPACITY;
     }
 
-    public Map<String, Integer> putEntriesToHashMap(){
+    public Map<String, Integer> putElementsToHashMap(){
         Scanner scanner = new Scanner(System.in);
-        Map<String, Integer> hashMap = createHashMap();
+        Map<String, Integer> hashMap = createAHashMap();
         try{
             if (hashMap != null){
                 while (!isFull(hashMap)){
@@ -99,7 +99,7 @@ public class HashMap implements Map {
         return hashMap;
     }
 
-    public Map<String, Integer> putEntriesOriginToHashMap(){
+    public Map<String, Integer> putElementsOriginToHashMap(){
         Map<String, Integer> hashMap = new java.util.HashMap<>();
         hashMap.put("Java",1);
         hashMap.put("Javascript",2);
@@ -109,9 +109,9 @@ public class HashMap implements Map {
         return hashMap;
     }
 
-    public Integer accessEntriesOfHashMap(){
+    public Integer accessAnElementOfHashMap(){
         Scanner scanner = new Scanner(System.in);
-        Map<String, Integer> hashMap = putEntriesToHashMap();
+        Map<String, Integer> hashMap = putElementsToHashMap();
         Integer value = null;
         try{
             if (hashMap != null){
@@ -130,26 +130,26 @@ public class HashMap implements Map {
     }
 
     public Set<String> getAllKeysOfHashMap(){
-        Map<String, Integer> hashMap = putEntriesOriginToHashMap();
-        printHashMap(hashMap);
+        Map<String, Integer> hashMap = putElementsOriginToHashMap();
+        printElementsHashMap(hashMap);
         return hashMap.keySet();
     }
 
     public Collection<Integer> getAllValuesOfHashMap(){
-        Map<String, Integer> hashMap = putEntriesOriginToHashMap();
-        printHashMap(hashMap);
+        Map<String, Integer> hashMap = putElementsOriginToHashMap();
+        printElementsHashMap(hashMap);
         return hashMap.values();
     }
 
     public Set<Entry<String, Integer>> getAllEntriesOfHashMap(){
-        Map<String, Integer> hashMap = putEntriesOriginToHashMap();
-        printHashMap(hashMap);
+        Map<String, Integer> hashMap = putElementsOriginToHashMap();
+        printElementsHashMap(hashMap);
         return hashMap.entrySet();
     }
 
-    public Map<String, Integer> replaceAnEntriesHashMap(){
+    public Map<String, Integer> replaceAnElementHashMap(){
         Scanner scanner = new Scanner(System.in);
-        Map<String, Integer> hashMap = putEntriesOriginToHashMap();
+        Map<String, Integer> hashMap = putElementsOriginToHashMap();
         try{
             System.out.println(hashMap);
             if(hashMap != null){
@@ -169,12 +169,12 @@ public class HashMap implements Map {
         return hashMap;
     }
 
-    public Map<String, Integer> removeAnEntriesFromHashMap(){
+    public Map<String, Integer> removeAnElementFromHashMap(){
         Scanner scanner = new Scanner(System.in);
-        Map<String, Integer> hashMap = putEntriesOriginToHashMap();
+        Map<String, Integer> hashMap = putElementsOriginToHashMap();
         try{
             if (hashMap != null){
-                printHashMap(hashMap);
+                printElementsHashMap(hashMap);
                 if (!hashMap.isEmpty()){
                     System.out.print("Input a key to remove an entries: ");
                     String key = scanner.next();
@@ -189,7 +189,7 @@ public class HashMap implements Map {
         return hashMap;
     }
 
-    public void printHashMap(Map<String, Integer> hashMap){
+    public void printElementsHashMap(Map<String, Integer> hashMap){
         System.out.print("Hash map: ");
         for (Entry<String, Integer> entry : hashMap.entrySet()){
             System.out.print(entry);
@@ -198,21 +198,21 @@ public class HashMap implements Map {
         System.out.println();
     }
 
-    public Map<String, Integer> removeAllEntries(){
-        Map<String, Integer> hashMap = putEntriesOriginToHashMap();
+    public Map<String, Integer> removeAllElements(){
+        Map<String, Integer> hashMap = putElementsOriginToHashMap();
         hashMap.clear();
         return hashMap;
     }
 
     public void load(){
-        System.out.println(putEntriesToHashMap());
-        System.out.println("Value: " + accessEntriesOfHashMap());
+        System.out.println(putElementsToHashMap());
+        System.out.println("Value: " + accessAnElementOfHashMap());
         System.out.println("Keys: " + getAllKeysOfHashMap());
         System.out.println("Values: " + getAllValuesOfHashMap());
         System.out.println("Entries: " + getAllEntriesOfHashMap());
-        System.out.println(replaceAnEntriesHashMap());
-        System.out.println(removeAnEntriesFromHashMap());
-        System.out.println(removeAllEntries());
+        System.out.println(replaceAnElementHashMap());
+        System.out.println(removeAnElementFromHashMap());
+        System.out.println(removeAllElements());
     }
 
     public static void main(String[] args) {
