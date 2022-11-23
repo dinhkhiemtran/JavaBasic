@@ -1,4 +1,4 @@
-package com.example.javabasic.collections.collection.set;
+package com.example.javabasic.collections.collection.set.sorted.navigable;
 
 import java.util.*;
 
