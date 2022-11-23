@@ -118,7 +118,11 @@ public class LinkedHashMap implements Map {
                 if (!linkedHashMap.isEmpty()){
                     System.out.print("Input key to get value: ");
                     String key = scanner.next();
-                    value = linkedHashMap.get(key);
+                    if (linkedHashMap.containsKey(key)){
+                        value = linkedHashMap.get(key);
+                    }else {
+                        return null;
+                    }
                 }
             }
         }catch (InputMismatchException inputMismatchException){
@@ -165,7 +169,11 @@ public class LinkedHashMap implements Map {
                 if (!linkedHashMap.isEmpty()){
                     System.out.print("Input a key to remove from linked hash map: ");
                     String key = scanner.next();
-                    linkedHashMap.remove(key);
+                    if (linkedHashMap.containsKey(key)){
+                        linkedHashMap.remove(key);
+                    }else {
+                        return null;
+                    }
                 }
             }
         }catch (InputMismatchException inputMismatchException){
