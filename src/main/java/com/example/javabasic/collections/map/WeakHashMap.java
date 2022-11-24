@@ -144,7 +144,7 @@ public class WeakHashMap implements Map {
         System.out.println();
     }
 
-    public String getElement(){
+    public String getAnElement(){
         Scanner scanner = new Scanner(System.in);
         Map<String, String> weakHashMap = insertElementsToOriginWeakHashMap();
         String value = "";
@@ -200,7 +200,7 @@ public class WeakHashMap implements Map {
         System.out.println("Keys: " + getAllKeys(weakHashMap));
         System.out.println("Values: " + getAllValues(weakHashMap));
         System.out.println("Entries: " + getAllEntries(weakHashMap));
-        System.out.println(getElement());
+        System.out.println(getAnElement());
         printWeakHashMapUsingForEach(weakHashMap);
         System.out.println(removeAnElement());
         System.out.println(removeAllWeakHashMap(weakHashMap));
