@@ -207,25 +207,31 @@ public class TreeMap implements NavigableMap {
         return treeMap;
     }
 
-    public <T> Collection<T> getAllKeys(Map<T,T> treeMap){
+    public Collection<String> getAllKeys(Map<String,Integer> treeMap){
         return treeMap.keySet();
     }
 
-    public <T> Collection<T> getAllValues(Map<T,T> treeMap){
+    public  Collection<Integer> getAllValues(Map<String,Integer> treeMap){
         return treeMap.values();
+    }
+
+    public Collection<Entry<String, Integer>> getAllEntries(Map<String, Integer> treeMap){
+        return treeMap.entrySet();
     }
 
     public Map<String, Integer> removeAnElementSpecified(){
         Scanner scanner = new Scanner(System.in);
-        Map<String, Integer> treeMap = insertElementsToTreeMap();
+        java.util.TreeMap<String, Integer> treeMap = insertElementsToTreeMap();
         try{
             if (treeMap != null && !treeMap.isEmpty()){
+                printTreeMap(treeMap);
                 System.out.print("Input key to remove from Tree Map: ");
                 String key = scanner.next();
                 if (treeMap.containsKey(key)){
                     treeMap.remove(key);
+                    System.out.println("Element is removed successfully.");
                 }else {
-                    System.out.print("Not Found.");
+                    System.out.println("Not Found.");
                 }
             }
         }catch (InputMismatchException inputMismatchException){
@@ -238,9 +244,10 @@ public class TreeMap implements NavigableMap {
 
     public Map<String, Integer> replaceAnElementOfTreeMap(){
         Scanner scanner = new Scanner(System.in);
-        Map<String, Integer> treeMap = insertElementsToTreeMap();
+        java.util.TreeMap<String, Integer> treeMap = insertElementsToTreeMap();
         try {
             if (treeMap != null && !treeMap.isEmpty()){
+                printTreeMap(treeMap);
                 System.out.print("Input a key to replace: ");
                 String key = scanner.next();
                 if (treeMap.containsKey(key)){
@@ -257,19 +264,19 @@ public class TreeMap implements NavigableMap {
         return treeMap;
     }
 
-    public <T> T getFirstKey(java.util.TreeMap<T,T> treeMap){
+    public String getFirstKey(java.util.TreeMap<String,Integer> treeMap){
         return treeMap.firstKey();
     }
 
-    public <T> T getLastKey(java.util.TreeMap<T,T> treeMap){
+    public String getLastKey(java.util.TreeMap<String, Integer> treeMap){
         return treeMap.lastKey();
     }
 
-    public <T> Entry<T,T> getFirstEntry(java.util.TreeMap<T,T> treeMap){
+    public Entry<String, Integer> getFirstEntry(java.util.TreeMap<String,Integer> treeMap){
         return treeMap.firstEntry();
     }
 
-    public <T> Entry<T,T> getLastEntry(java.util.TreeMap<T,T> treeMap){
+    public  Entry<String, Integer> getLastEntry(java.util.TreeMap<String, Integer> treeMap){
         return treeMap.lastEntry();
     }
 
@@ -407,8 +414,29 @@ public class TreeMap implements NavigableMap {
     }
 
     public void load(){
-        Map<String, Integer> treeMap = insertElementsToTreeMap();
-
+        java.util.TreeMap<String, Integer> treeMap = insertElementsToTreeMap();
+//        System.out.println("Keys: " + getAllKeys(treeMap));
+//        System.out.println("Value: " + getAllValues(treeMap));
+//        System.out.println("Entries: " + getAllEntries(treeMap));
+//        System.out.println(removeAnElementSpecified());
+//        System.out.println(replaceAnElementOfTreeMap());
+//        printTreeMap(treeMap);
+//        System.out.println("First Key: " + getFirstKey(treeMap));
+//        System.out.println("First Entry: " + getFirstEntry(treeMap));
+//        System.out.println("Last Key: " + getLastKey(treeMap));
+//        System.out.println("Last Entry: " + getLastEntry(treeMap));
+//        System.out.println("Higher Key: " + getHigherKey());
+//        System.out.println("Higher Entry: " + getHigherEntry());
+//        System.out.println("Lower Key: " + getLowerKey());
+//        System.out.println("Lower Entry: " + getLowerEntry());
+//        System.out.println("Ceiling Key: " + getCeilingKey());
+//        System.out.println("Ceiling Entry: " + getCeilingEntry());
+//        System.out.println("Floor Key: " + getFloorKey());
+//        System.out.println("Floor Entry: " + getFloorEntry());
+//        System.out.println(getHeadMap());
+//        System.out.println(getTailMap());
+//        System.out.println(getSubMap());
+        System.out.println(createATreeMapWithACustomizedComparator());
     }
 
     public static class CustomComparator implements Comparator<Integer> {
