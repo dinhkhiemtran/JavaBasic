@@ -69,142 +69,152 @@ public class HashMap implements Map {
         return null;
     }
 
-    public Map<String, Integer> createAHashMap(){
-        Map<String,Integer> hashMap = new java.util.HashMap<>(CAPACITY, loadFactor);
+    public Map<String, Integer> createAHashMap() {
+        Map<String, Integer> hashMap = new java.util.HashMap<>(CAPACITY, loadFactor);
         return hashMap;
     }
 
-    public boolean isFull(Map<String, Integer> hashMap){
+    public boolean isFull(Map<String, Integer> hashMap) {
         return hashMap.size() >= CAPACITY;
     }
 
-    public Map<String, Integer> putElementsToHashMap(){
+    public Map<String, Integer> putElementsToHashMap() {
         Scanner scanner = new Scanner(System.in);
         Map<String, Integer> hashMap = createAHashMap();
-        try{
-            if (hashMap != null){
-                while (!isFull(hashMap)){
+        try {
+            if (hashMap != null) {
+                while (!isFull(hashMap)) {
                     System.out.print("Input a key(String) of hash map: ");
                     String key = scanner.next();
                     System.out.print("Input a value(Integer) of hash map: ");
                     Integer value = scanner.nextInt();
-                    hashMap.put(key,value);
+                    hashMap.put(key, value);
                 }
             }
-        }catch (InputMismatchException inputMismatchException){
+        } catch (InputMismatchException inputMismatchException) {
             System.out.println("Exception: " + "Input wrong type.");
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("Exception: " + ex.getMessage());
         }
         return hashMap;
     }
 
-    public Map<String, Integer> putElementsOriginToHashMap(){
+    public Map<String, Integer> putElementsOriginToHashMap() {
         Map<String, Integer> hashMap = new java.util.HashMap<>();
-        hashMap.put("Java",1);
-        hashMap.put("Javascript",2);
-        hashMap.put("Python",3);
-        hashMap.put("Go",4);
-        hashMap.put("C#",5);
+        hashMap.put("Java", 1);
+        hashMap.put("Javascript", 2);
+        hashMap.put("Python", 3);
+        hashMap.put("Go", 4);
+        hashMap.put("C#", 5);
         return hashMap;
     }
 
-    public Integer accessAnElementOfHashMap(){
+    public Integer accessAnElementOfHashMap() {
         Scanner scanner = new Scanner(System.in);
         Map<String, Integer> hashMap = putElementsToHashMap();
         Integer value = null;
-        try{
-            if (hashMap != null){
+        try {
+            if (hashMap != null) {
                 System.out.print("Input key of hash to get value: ");
                 String key = scanner.next();
-                if(hashMap.containsKey(key)){
+                if (hashMap.containsKey(key)) {
                     value = hashMap.get(key);
                 }
             }
-        }catch (InputMismatchException in){
+        } catch (InputMismatchException in) {
             System.out.println("Exception: " + "Input wrong type.");
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("Exception: " + ex.getMessage());
         }
         return value;
     }
 
-    public Set<String> getAllKeysOfHashMap(){
+    public Set<String> getAllKeysOfHashMap() {
         Map<String, Integer> hashMap = putElementsOriginToHashMap();
         printElementsHashMap(hashMap);
         return hashMap.keySet();
     }
 
-    public Collection<Integer> getAllValuesOfHashMap(){
+    public Collection<Integer> getAllValuesOfHashMap() {
         Map<String, Integer> hashMap = putElementsOriginToHashMap();
         printElementsHashMap(hashMap);
         return hashMap.values();
     }
 
-    public Set<Entry<String, Integer>> getAllEntriesOfHashMap(){
+    public Set<Entry<String, Integer>> getAllEntriesOfHashMap() {
         Map<String, Integer> hashMap = putElementsOriginToHashMap();
         printElementsHashMap(hashMap);
         return hashMap.entrySet();
     }
 
-    public Map<String, Integer> replaceAnElementHashMap(){
+    public Map<String, Integer> replaceAnElementHashMap() {
         Scanner scanner = new Scanner(System.in);
         Map<String, Integer> hashMap = putElementsOriginToHashMap();
-        try{
+        try {
             System.out.println(hashMap);
-            if(hashMap != null){
-                if (!hashMap.isEmpty()){
+            if (hashMap != null) {
+                if (!hashMap.isEmpty()) {
                     System.out.print("Input a key to replace: ");
                     String key = scanner.next();
                     System.out.print("Input a value to changed: ");
                     Integer value = scanner.nextInt();
-                    hashMap.replace(key,value);
+                    if (hashMap.containsKey(key)) {
+                        hashMap.replace(key, value);
+                    } else {
+                        System.out.println("Not Found.");
+                    }
                 }
             }
-        }catch (InputMismatchException inputMismatchException){
+        } catch (InputMismatchException inputMismatchException) {
             System.out.println("Exception: " + "Input wrong type.");
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("Exception: " + ex.getMessage());
         }
         return hashMap;
     }
 
-    public Map<String, Integer> removeAnElementFromHashMap(){
+    public Map<String, Integer> removeAnElementFromHashMap() {
         Scanner scanner = new Scanner(System.in);
         Map<String, Integer> hashMap = putElementsOriginToHashMap();
-        try{
-            if (hashMap != null){
+        try {
+            if (hashMap != null) {
                 printElementsHashMap(hashMap);
-                if (!hashMap.isEmpty()){
+                if (!hashMap.isEmpty()) {
                     System.out.print("Input a key to remove an entries: ");
                     String key = scanner.next();
-                    hashMap.remove(key);
+                    if (hashMap.containsKey(key)) {
+                        hashMap.remove(key);
+                    }else {
+                        System.out.println("Not Found.");
+                    }
                 }
             }
-        }catch (InputMismatchException inputMismatchException){
+        } catch (InputMismatchException inputMismatchException) {
             System.out.println("Exception: " + "Input wrong type.");
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("Exception: " + ex.getMessage());
         }
         return hashMap;
     }
 
-    public void printElementsHashMap(Map<String, Integer> hashMap){
+    public void printElementsHashMap(Map<String, Integer> hashMap) {
         System.out.print("Hash map: ");
-        for (Entry<String, Integer> entry : hashMap.entrySet()){
+        for (Entry<String, Integer> entry : hashMap.entrySet()) {
             System.out.print(entry);
             System.out.print(", ");
         }
         System.out.println();
     }
 
-    public Map<String, Integer> removeAllElements(){
+    public Map<String, Integer> removeAllElements() {
         Map<String, Integer> hashMap = putElementsOriginToHashMap();
-        hashMap.clear();
+        if (hashMap != null && !hashMap.isEmpty()){
+            hashMap.clear();
+        }
         return hashMap;
     }
 
-    public void load(){
+    public void load() {
         System.out.println(putElementsToHashMap());
         System.out.println("Value: " + accessAnElementOfHashMap());
         System.out.println("Keys: " + getAllKeysOfHashMap());

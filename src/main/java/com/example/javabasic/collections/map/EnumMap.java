@@ -114,7 +114,11 @@ public class EnumMap implements Map {
         try{
             if (enumSizeMap != null && !enumSizeMap.isEmpty()){
                 printEnumSizeMap(enumSizeMap);
-                enumSizeMap.remove(Size.SMALL);
+                if (enumSizeMap.containsKey(Size.SMALL)){
+                    enumSizeMap.remove(Size.SMALL);
+                }else {
+                    System.out.println("Not Found.");
+                }
             }
         }catch (Exception ex){
             System.out.println("Exception: " + ex.getMessage());
@@ -127,7 +131,11 @@ public class EnumMap implements Map {
         try{
             if (enumSizeMap != null && !enumSizeMap.isEmpty()){
                 printEnumSizeMap(enumSizeMap);
-                enumSizeMap.replace(Size.SMALL,10);
+                if (enumSizeMap.containsKey(Size.SMALL)){
+                    enumSizeMap.replace(Size.SMALL,10);
+                }else {
+                    System.out.println("Not Found.");
+                }
             }
         }catch (Exception ex){
             System.out.println("Exception: " + ex.getMessage());

@@ -172,7 +172,7 @@ public class LinkedHashMap implements Map {
                     if (linkedHashMap.containsKey(key)){
                         linkedHashMap.remove(key);
                     }else {
-                        return null;
+                        System.out.println("Not Found.");
                     }
                 }
             }

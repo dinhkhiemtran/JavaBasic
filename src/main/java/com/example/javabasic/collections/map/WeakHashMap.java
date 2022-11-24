@@ -178,7 +178,7 @@ public class WeakHashMap implements Map {
                 if (weakHashMap.containsKey(key)){
                     weakHashMap.remove(key);
                 }else {
-                    return null;
+                    System.out.println("Not Found.");
                 }
             }
         }catch (InputMismatchException inputMismatchException){
