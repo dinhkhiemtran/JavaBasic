@@ -415,27 +415,27 @@ public class TreeMap implements NavigableMap {
 
     public void load(){
         java.util.TreeMap<String, Integer> treeMap = insertElementsToTreeMap();
-//        System.out.println("Keys: " + getAllKeys(treeMap));
-//        System.out.println("Value: " + getAllValues(treeMap));
-//        System.out.println("Entries: " + getAllEntries(treeMap));
-//        System.out.println(removeAnElementSpecified());
-//        System.out.println(replaceAnElementOfTreeMap());
-//        printTreeMap(treeMap);
-//        System.out.println("First Key: " + getFirstKey(treeMap));
-//        System.out.println("First Entry: " + getFirstEntry(treeMap));
-//        System.out.println("Last Key: " + getLastKey(treeMap));
-//        System.out.println("Last Entry: " + getLastEntry(treeMap));
-//        System.out.println("Higher Key: " + getHigherKey());
-//        System.out.println("Higher Entry: " + getHigherEntry());
-//        System.out.println("Lower Key: " + getLowerKey());
-//        System.out.println("Lower Entry: " + getLowerEntry());
-//        System.out.println("Ceiling Key: " + getCeilingKey());
-//        System.out.println("Ceiling Entry: " + getCeilingEntry());
-//        System.out.println("Floor Key: " + getFloorKey());
-//        System.out.println("Floor Entry: " + getFloorEntry());
-//        System.out.println(getHeadMap());
-//        System.out.println(getTailMap());
-//        System.out.println(getSubMap());
+        System.out.println("Keys: " + getAllKeys(treeMap));
+        System.out.println("Value: " + getAllValues(treeMap));
+        System.out.println("Entries: " + getAllEntries(treeMap));
+        System.out.println(removeAnElementSpecified());
+        System.out.println(replaceAnElementOfTreeMap());
+        printTreeMap(treeMap);
+        System.out.println("First Key: " + getFirstKey(treeMap));
+        System.out.println("First Entry: " + getFirstEntry(treeMap));
+        System.out.println("Last Key: " + getLastKey(treeMap));
+        System.out.println("Last Entry: " + getLastEntry(treeMap));
+        System.out.println("Higher Key: " + getHigherKey());
+        System.out.println("Higher Entry: " + getHigherEntry());
+        System.out.println("Lower Key: " + getLowerKey());
+        System.out.println("Lower Entry: " + getLowerEntry());
+        System.out.println("Ceiling Key: " + getCeilingKey());
+        System.out.println("Ceiling Entry: " + getCeilingEntry());
+        System.out.println("Floor Key: " + getFloorKey());
+        System.out.println("Floor Entry: " + getFloorEntry());
+        System.out.println(getHeadMap());
+        System.out.println(getTailMap());
+        System.out.println(getSubMap());
         System.out.println(createATreeMapWithACustomizedComparator());
     }
 
