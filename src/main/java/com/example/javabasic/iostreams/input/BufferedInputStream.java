@@ -24,8 +24,6 @@ public class BufferedInputStream extends InputStream {
                     i = buffer.read();
                 }
                 buffer.close();
-            }else {
-                System.out.println("Null");
             }
         } catch (Exception ex) {
             System.out.println("Exception: " + ex.getStackTrace());
