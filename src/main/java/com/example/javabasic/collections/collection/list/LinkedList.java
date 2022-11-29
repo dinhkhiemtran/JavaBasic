@@ -118,12 +118,12 @@ public class LinkedList implements List {
         return new Object[0];
     }
 
-    public List<String> createLinkedList(){
+    public List<String> createLinkedList() {
         List<String> linkedList = new java.util.LinkedList<>();
         return linkedList;
     }
 
-    public List<String> addElementsToLinkedList(){
+    public List<String> addElements() {
         List<String> linkedList = createLinkedList();
         linkedList.add("Java");
         linkedList.add("Javascript");
@@ -133,103 +133,98 @@ public class LinkedList implements List {
         return linkedList;
     }
 
-    public String accessElementInLinkedList(){
+    public String accessAnElement(List<String> linkedList) {
         Scanner scanner = new Scanner(System.in);
-        List<String> linkedList = addElementsToLinkedList();
         String element = "";
-        try{
-            System.out.print("Input a position that you want to access: ");
-            int pos = scanner.nextInt();
-            if(linkedList != null){
-                if(!linkedList.isEmpty()){
+        try {
+            if (linkedList != null) {
+                if (!linkedList.isEmpty()) {
+                    System.out.print("Input a position to access to an element: ");
+                    int pos = scanner.nextInt();
                     element = linkedList.get(pos);
-                }else {
-                    return "Empty!";
                 }
             }
-        }catch (InputMismatchException e){
-            System.out.println("Input wrong Type ");
-        }catch (Exception e){
+        } catch (InputMismatchException e) {
+            System.out.println("Input wrong type.");
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        print(linkedList);
         return element;
     }
 
-    public String changeElementsOfALinkedList(){
+    public List<String> changeAnElement(List<String> linkedList) {
         Scanner scanner = new Scanner(System.in);
-        List<String> linkedList = addElementsToLinkedList();
-        String result = "";
-        try{
-            System.out.print("Input a position that you want to change: ");
-            int pos = scanner.nextInt();
-            System.out.print("Input an element that you want to change into: ");
-            String element = scanner.next();
-            if(linkedList != null){
-                if(!linkedList.isEmpty()){
-                    result = linkedList.set(pos,element);
-                }else {
-                    return "Empty!";
+        try {
+            if (linkedList != null){
+                if (!linkedList.isEmpty()){
+                    System.out.print("Input a position of element to change: ");
+                    int pos = scanner.nextInt();
+                    System.out.print("Input an element to change: ");
+                    String element = scanner.next();
+                    linkedList.set(pos, element);
                 }
             }
-        }catch (InputMismatchException in){
-            System.out.println("Wrong Type ");
-        }catch (Exception e){
+        } catch (InputMismatchException in) {
+            System.out.println("Input wrong type.");
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        print(linkedList);
-        return result;
+        return linkedList;
     }
 
-    public String removeElementFromALinkedList(){
+    public List<String> removeAnElement(List<String> linkedList) {
         Scanner scanner = new Scanner(System.in);
-        List<String> linkedList = addElementsToLinkedList();
         String element = "";
-        try{
-            System.out.print("Input a position that you want to remove: ");
-            int pos = scanner.nextInt();
-            if(linkedList != null){
-                if(!linkedList.isEmpty()){
+        try {
+            if (linkedList != null){
+                if (!linkedList.isEmpty()){
+                    System.out.print("Input a position of element to remove from the list: ");
+                    int pos = scanner.nextInt();
                     element = linkedList.remove(pos);
-                }else {
-                    return "Empty.";
+                    System.out.println("Element is removed: " + element);
                 }
             }
-        }catch (InputMismatchException in){
-            System.out.print("Input wrong Type");
-        }catch (Exception ex){
+        } catch (InputMismatchException in) {
+            System.out.print("Input wrong type.");
+        } catch (Exception ex) {
             System.out.print(ex.getMessage());
         }
-        print(linkedList);
-        return element;
+        return linkedList;
     }
 
-    public void removeAllElementFromLinkedList(){
-        List<String> linkedList = addElementsToLinkedList();
-        if(linkedList != null){
-            if(!linkedList.isEmpty()){
+    public List<String> removeAllElements(List<String> linkedList) {
+        if (linkedList != null) {
+            if (!linkedList.isEmpty()) {
                 linkedList.clear();
-            }else {
+            } else {
                 System.out.println("Empty.");
             }
         }
-        print(linkedList);
+       return linkedList;
     }
 
-    private void print(List<String> linkedList){
-        System.out.print("Linked List: ");
-        for(String str : linkedList){
-            System.out.print(str);
-            System.out.print(",");
+    private <T> void print(List<T> linkedList){
+        try {
+            if (linkedList != null){
+                Iterator<T> iterator = linkedList.iterator();
+                while (iterator.hasNext()){
+                    System.out.print(iterator.next());
+                    System.out.print(", ");
+                }
+            }
+        }catch (Exception exception){
+            System.out.println("Exception: " + exception.getMessage());
         }
         System.out.println();
     }
 
-    private void load(){
-        System.out.println(accessElementInLinkedList());
-        System.out.print(changeElementsOfALinkedList());
-        System.out.println(removeElementFromALinkedList());
-        removeAllElementFromLinkedList();
+    private void load() {
+        List<String> linkedList = addElements();
+        print(linkedList);
+        System.out.println(accessAnElement(linkedList));
+        System.out.println(changeAnElement(linkedList));
+        System.out.println(removeAnElement(linkedList));
+        System.out.println(removeAllElements(linkedList));
     }
 
     public static void main(String[] args) {
