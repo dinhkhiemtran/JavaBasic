@@ -4,7 +4,7 @@ import java.util.*;
 
 public class ArrayDeque implements Deque {
 
-    private static final int CAPACITY = 2;
+    private static final int CAPACITY = 10;
 
     @Override
     public void addFirst(Object o) {
@@ -190,7 +190,7 @@ public class ArrayDeque implements Deque {
         return arrayDeque.size() >= CAPACITY;
     }
 
-    public Deque<String> addElementsString() {
+    public java.util.ArrayDeque<String> addElementsString() {
         Scanner scanner = new Scanner(System.in);
         java.util.ArrayDeque<String> arrayDeque = createArrayDeque();
         try {
@@ -209,7 +209,7 @@ public class ArrayDeque implements Deque {
         return arrayDeque;
     }
 
-    public Deque<Integer> offerElementsInteger() {
+    public java.util.ArrayDeque<Integer> offerElementsInteger() {
         Scanner scanner = new Scanner(System.in);
         java.util.ArrayDeque<Integer> arrayDeque = createArrayDeque();
         try {
@@ -252,7 +252,7 @@ public class ArrayDeque implements Deque {
             if (arrayDeque != null) {
                 if (!arrayDeque.isEmpty()) {
                     T element = arrayDeque.removeFirst();
-                    System.out.print("The first Element is removed: " + element);
+                    System.out.println("The first Element is removed: " + element);
                 }
             }
         } catch (Exception ex) {
@@ -323,7 +323,7 @@ public class ArrayDeque implements Deque {
             if (arrayDeque != null){
                 if (!arrayDeque.isEmpty()){
                     T element = arrayDeque.removeFirst();
-                    System.out.println("A element is removed: " + element);
+                    System.out.print("A element is removed: " + element);
                 }
             }
         }catch (Exception ex){
@@ -338,7 +338,7 @@ public class ArrayDeque implements Deque {
             if (arrayDeque != null){
                 pollLastElement(arrayDeque);
                 if (!isFull(arrayDeque)){
-                    System.out.println("Offer an element to a last of a array deque: ");
+                    System.out.print("Offer an element to a last of a array deque: ");
                     Integer element = scanner.nextInt();
                     boolean isSuccess = arrayDeque.offer(element);
                     if (isSuccess){
@@ -414,7 +414,7 @@ public class ArrayDeque implements Deque {
         return arrayDeque;
     }
 
-    public Deque<Integer> removeAnElementSpecified(java.util.ArrayDeque<Integer> arrayDeque) {
+    public Deque<Integer> removeAnElementSpecifiedInteger(java.util.ArrayDeque<Integer> arrayDeque) {
        Scanner scanner = new Scanner(System.in);
        try{
            if (arrayDeque != null){
@@ -477,7 +477,26 @@ public class ArrayDeque implements Deque {
     }
 
     private void load() {
-
+        java.util.ArrayDeque<String> arrayDequeString = addElementsString();
+        java.util.ArrayDeque<Integer> arrayDequeInteger = offerElementsInteger();
+        print(arrayDequeInteger);
+        print(arrayDequeString);
+        System.out.println(addFirstElement(arrayDequeString));
+        System.out.println(offerFirstElement(arrayDequeInteger));
+        System.out.println(addLastElement(arrayDequeString));
+        System.out.println(offerLastElement(arrayDequeInteger));
+        System.out.println(getFirstElement(arrayDequeString));
+        System.out.println(getFirstElement(arrayDequeInteger));
+        System.out.println(getLastElement(arrayDequeString));
+        System.out.println(getLastElement(arrayDequeInteger));
+        System.out.println(removeAnElementSpecifiedString(arrayDequeString));
+        System.out.println(removeAnElementSpecifiedInteger(arrayDequeInteger));
+        System.out.println(pollAnElement(arrayDequeString));
+        System.out.println(pollAnElement(arrayDequeInteger));
+        System.out.println(removeAnElement(arrayDequeString));
+        System.out.println(removeAnElement(arrayDequeInteger));
+        System.out.println(removeAllElements(arrayDequeString));
+        System.out.println(removeAllElements(arrayDequeInteger));
     }
 
     public static void main(String[] args) {

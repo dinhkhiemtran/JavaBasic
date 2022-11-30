@@ -178,18 +178,13 @@ public class LinkedList implements Deque {
         return null;
     }
 
-    public Deque<String> createLinkedListString(){
-        Deque<String> linkedList = new java.util.LinkedList<>();
+    public <T> java.util.LinkedList<T> createLinkedList() {
+        java.util.LinkedList<T> linkedList = new java.util.LinkedList<>();
         return linkedList;
     }
 
-    public Deque<Integer> createLinkedListInteger(){
-        Deque<Integer> linkedList = new java.util.LinkedList<>();
-        return linkedList;
-    }
-
-    public Deque<String> addElementsToLinkedListString(){
-        Deque<String> linkedList = createLinkedListString();
+    public java.util.LinkedList<String> addElementsToLinkedListString() {
+        java.util.LinkedList<String> linkedList = createLinkedList();
         linkedList.add("Dog");
         linkedList.add("Cat");
         linkedList.add("Cow");
@@ -198,111 +193,125 @@ public class LinkedList implements Deque {
         return linkedList;
     }
 
-    public Deque<Integer> addElementsToLinkedListInteger(){
-        Deque<Integer> linkedList = createLinkedListInteger();
-        for(int i = 0 ; i <= 5; i++){
+    public java.util.LinkedList<Integer> addElementsToLinkedListInteger() {
+        java.util.LinkedList<Integer> linkedList = createLinkedList();
+        for (int i = 0; i <= 5; i++) {
             linkedList.offer(i);
         }
         return linkedList;
     }
 
-    public String accessLinkedListStringFirstElement(){
-        Deque<String> linkedList = addElementsToLinkedListString();
-        String element = "";
-        try{
-            element = linkedList.getFirst();
-        }catch (InputMismatchException inputMismatchException){
-            System.out.print("Exception: " + "Wrong type");
-        }catch (Exception ex){
-            System.out.println("Exception: " + ex.getMessage());
-        }
-        return element;
-    }
-
-    public Integer accessLinkedListIntegerFirstElement(){
-        Deque<Integer> linkedList = addElementsToLinkedListInteger();
-        Integer element =  0;
-        try{
-            element = linkedList.getFirst();
-        }catch (InputMismatchException inputMismatchException){
-            System.out.print("Exception: " + "Wrong type");
-        }catch (Exception ex){
-            System.out.println("Exception: " + ex.getMessage());
-        }
-        return element;
-    }
-
-    public String accessLinkedListStringLastElement(){
-        Deque<String> linkedList = addElementsToLinkedListString();
-        String element = "";
-        try{
-            element = linkedList.getLast();
-        }catch (InputMismatchException inputMismatchException){
-            System.out.print("Exception: " + "Wrong type.");
-        }catch (Exception ex){
-            System.out.println("Exception: " + ex.getMessage());
-        }
-        return element;
-    }
-
-    public Integer accessLinkedListIntegerLastElement(){
-        Deque<Integer> linkedList = addElementsToLinkedListInteger();
-        Integer element =  0;
-        try{
-            element = linkedList.getLast();
-        }catch (InputMismatchException inputMismatchException){
-            System.out.print("Exception: " + "Wrong type.");
-        }catch (Exception ex){
-            System.out.println("Exception: " + ex.getMessage());
-        }
-        return element;
-    }
-
-    public Deque<String> removeAnElementFromLinkedListString(){
-        Scanner scanner = new Scanner(System.in);
-        Deque<String> linkedList = addElementsToLinkedListString();
-        try{
-            System.out.print("Input an element to remove from linked list String: ");
-            String element = scanner.next();
-            boolean isSuccess = linkedList.remove(element);
-            if(isSuccess){
-                System.out.print("Element is removed successfully. ");
+    public <T> T accessAFirstElement(java.util.LinkedList<T> linkedList) {
+        T element = null;
+        try {
+            if (linkedList != null) {
+                if (!linkedList.isEmpty()) {
+                    element = linkedList.getFirst();
+                }
+                System.out.print("A first element: ");
             }
-        }catch (NoSuchElementException no){
-            System.out.print("Exception: " + no.getMessage());
-        }catch (Exception ex){
-            System.out.print("Exception: " + ex.getMessage());
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex.getMessage());
+        }
+        return element;
+    }
+
+
+    public <T> T accessALastElement(java.util.LinkedList<T> linkedList) {
+        T element = null;
+        try {
+            if (linkedList != null) {
+                if (!linkedList.isEmpty()) {
+                    element = linkedList.getLast();
+                }
+                System.out.print("A last element: ");
+            }
+        } catch (Exception exception) {
+            System.out.println("Exception: " + exception.getMessage());
+        }
+        return element;
+    }
+
+    public java.util.LinkedList<String> removeAnElementSpecifiedString(java.util.LinkedList<String> linkedList) {
+        Scanner scanner = new Scanner(System.in);
+        try {
+            if (linkedList != null) {
+                if (!linkedList.isEmpty()) {
+                    System.out.print("Input an element(String) to remove: ");
+                    String element = scanner.next();
+                    if (linkedList.contains(element)) {
+                        boolean isSuccess = linkedList.remove(element);
+                        if (isSuccess) {
+                            System.out.println("Element is removed successfully.");
+                        } else {
+                            System.out.println("Fail.");
+                        }
+                    }
+                }
+            }
+        } catch (InputMismatchException inputMismatchException) {
+            System.out.println("Exception: " + "Input wrong type.");
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex.getMessage());
         }
         return linkedList;
     }
 
-    public Deque<Integer> removeAnElementFromLinkedListInteger(){
+    public java.util.LinkedList<Integer> removeAnElementSpecifiedInteger(java.util.LinkedList<Integer> linkedList) {
         Scanner scanner = new Scanner(System.in);
-        Deque<Integer> linkedList = addElementsToLinkedListInteger();
-        try{
-            System.out.print("Input an element to remove from linked list Integer: ");
-            Integer pos = scanner.nextInt();
-            boolean isSuccess = linkedList.remove(pos);
-            if(isSuccess){
-                System.out.print("Element is removed successfully. ");
+        try {
+            if (linkedList != null) {
+                if (!linkedList.isEmpty()) {
+                    System.out.print("Input  an element(Integer) to remove: ");
+                    Integer element = scanner.nextInt();
+                    if (linkedList.contains(element)) {
+                        boolean isSuccess = linkedList.remove(element);
+                        if (isSuccess) {
+                            System.out.println("Element is removed successfully.");
+                        } else {
+                            System.out.println("Fail.");
+                        }
+                    }
+                }
             }
-        }catch (NoSuchElementException no){
-            System.out.print("Exception: " + no.getMessage());
-        }catch (Exception ex){
-            System.out.print("Exception: " + ex.getMessage());
+        } catch (InputMismatchException inputMismatchException) {
+            System.out.println("Exception: " + "Input wrong type.");
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex.getMessage());
         }
         return linkedList;
     }
 
-    public void load(){
-        System.out.println(addElementsToLinkedListString());
-        System.out.println(addElementsToLinkedListInteger());
-        System.out.println("First element: " + accessLinkedListStringFirstElement());
-        System.out.println("First element: " +accessLinkedListIntegerFirstElement());
-        System.out.println("Last element: " +accessLinkedListStringLastElement());
-        System.out.println("Last element: " +accessLinkedListIntegerLastElement());
-        System.out.println(removeAnElementFromLinkedListString());
-        System.out.println(removeAnElementFromLinkedListInteger());
+    public <T> java.util.LinkedList<T> removeAllElements(java.util.LinkedList<T> linkedList) {
+        if (linkedList != null) {
+            if (!linkedList.isEmpty()) {
+                linkedList.clear();
+            }
+        }
+        return linkedList;
+    }
+
+    public <T> void print(java.util.LinkedList<T> linkedList) {
+        if (linkedList != null) {
+            System.out.print("Linked List: ");
+            linkedList.forEach(elements -> System.out.print(elements + ", "));
+            System.out.println();
+        }
+    }
+
+    public void load() {
+        java.util.LinkedList<String> linkedListString = addElementsToLinkedListString();
+        java.util.LinkedList<Integer> linkedListInteger = addElementsToLinkedListInteger();
+        print(linkedListString);
+        print(linkedListInteger);
+        System.out.println(accessAFirstElement(linkedListString));
+        System.out.println(accessAFirstElement(linkedListInteger));
+        System.out.println(accessALastElement(linkedListString));
+        System.out.println(accessALastElement(linkedListInteger));
+        System.out.println(removeAnElementSpecifiedString(linkedListString));
+        System.out.println(removeAnElementSpecifiedInteger(linkedListInteger));
+        System.out.println(removeAllElements(linkedListString));
+        System.out.println(removeAllElements(linkedListInteger));
     }
 
     public static void main(String[] args) {
