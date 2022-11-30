@@ -140,7 +140,7 @@ public class EnumSet implements Set {
     public void load(){
         System.out.println(rangeOfEnumSet());
         System.out.println(ofEnumSet());
-        System.out.println( insertElementsToEnumSet());
+        System.out.println(insertElementsToEnumSet());
         accessEnumSetElements();
         System.out.println(removeEnumSetElements());
     }

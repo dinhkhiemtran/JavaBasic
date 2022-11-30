@@ -73,21 +73,21 @@ public class HashSet implements Set {
     }
 
     public <T> java.util.HashSet<T> createHashSet() {
-        Set<T> set = new java.util.HashSet<>(CAPACITY, loadFactor);
-        return (java.util.HashSet<T>) set;
+        java.util.HashSet<T> set = new java.util.HashSet<>(CAPACITY, loadFactor);
+        return set;
     }
 
     public <T> boolean isFull(java.util.HashSet<T> set) {
         return set.size() >= CAPACITY;
     }
 
-    public java.util.HashSet<String> insertElementToHashSetString() {
+    public java.util.HashSet<String> addElementsString() {
         Scanner scanner = new Scanner(System.in);
         java.util.HashSet<String> hashSet = createHashSet();
         try {
             if (hashSet != null) {
                 while (!isFull(hashSet)) {
-                    System.out.print("Insert element String to Hash Set: ");
+                    System.out.print("Add elements(String): ");
                     String element = scanner.next();
                     hashSet.add(element);
                 }
@@ -100,13 +100,13 @@ public class HashSet implements Set {
         return hashSet;
     }
 
-    public java.util.HashSet<Integer> insertElementToHashSetInteger() {
+    public java.util.HashSet<Integer> addElementsInteger() {
         Scanner scanner = new Scanner(System.in);
         java.util.HashSet<Integer> hashSet = createHashSet();
         try {
             if (hashSet != null) {
                 while (!isFull(hashSet)) {
-                    System.out.print("Input element integer to hash set: ");
+                    System.out.print("Add elements(Integer): ");
                     Integer element = scanner.nextInt();
                     hashSet.add(element);
                 }
@@ -119,91 +119,156 @@ public class HashSet implements Set {
         return hashSet;
     }
 
-    public java.util.HashSet<String> removeElementFromHashSetString() {
+    public java.util.HashSet<String> removeAnElementSpecifiedString(java.util.HashSet<String> hashSet) {
         Scanner scanner = new Scanner(System.in);
-        java.util.HashSet<String> hashSet = createHashSet();
         try {
             if (hashSet != null) {
                 if (!hashSet.isEmpty()) {
-                    System.out.print("Input element that you want to remove from hash set string: ");
+                    System.out.print("Input an element(String) to remove: ");
                     String element = scanner.next();
-                    hashSet.remove(element);
+                    if (hashSet.contains(element)) {
+                        boolean isSuccess = hashSet.remove(element);
+                        if (isSuccess) {
+                            System.out.println("Element is removed successfully.");
+                        } else {
+                            System.out.println("Fail.");
+                        }
+                    }
                 }
             }
         } catch (InputMismatchException inputMismatchException) {
-            System.out.println("Exception: " + "Input Wrong type");
+            System.out.println("Exception: " + "Input wrong type.");
         } catch (Exception ex) {
             System.out.println("Exception: " + ex.getMessage());
         }
         return hashSet;
     }
 
-    public java.util.HashSet<Integer> removeElementFromHashSetInteger() {
+    public java.util.HashSet<Integer> removeAnElementSpecifiedInteger(java.util.HashSet<Integer> hashSet) {
         Scanner scanner = new Scanner(System.in);
-        java.util.HashSet<Integer> hashSet = createHashSet();
         try {
             if (hashSet != null) {
                 if (!hashSet.isEmpty()) {
-                    System.out.println("Input element that you want to remove from hash set integer: ");
+                    System.out.println("Input an element(Integer) to remove: ");
                     Integer element = scanner.nextInt();
-                    hashSet.remove(element);
+                    if (hashSet.contains(element)) {
+                        boolean isSuccess = hashSet.remove(element);
+                        if (isSuccess) {
+                            System.out.println("Element is removed successfully.");
+                        } else {
+                            System.out.println("Fail.");
+                        }
+                    }
                 }
             }
         } catch (InputMismatchException inputMismatchException) {
-            System.out.println("Exception: " + "Input Wrong type");
+            System.out.println("Exception: " + "Input wrong type.");
         } catch (Exception ex) {
             System.out.println("Exception: " + ex.getMessage());
-        }
-        return hashSet;
-    }
-
-    public java.util.HashSet<String> createHashSetOriginString() {
-        java.util.HashSet<String> origin = new java.util.HashSet<>();
-        origin.add("Java");
-        origin.add("Javascript");
-        origin.add("Php");
-        origin.add("Golang");
-        origin.add("C#");
-        return origin;
-    }
-
-    public java.util.HashSet<Integer> createHashSetOriginInteger() {
-        java.util.HashSet<Integer> hashSet = new java.util.HashSet<>();
-        for (int i = 0; i <= 10; i++) {
-            hashSet.add(i);
         }
         return hashSet;
     }
 
     public <T> java.util.HashSet<T> unionSet(java.util.HashSet<T> set1, java.util.HashSet<T> set2) {
-        set2.addAll(set1);
-        return set2;
+        try {
+            if (set1 != null && set2 != null) {
+                boolean isSuccess = set1.addAll(set2);
+                if (isSuccess) {
+                    System.out.print("Union: ");
+                } else {
+                    System.out.println("Fail.");
+                }
+            }
+        } catch (Exception exception) {
+            System.out.println("Exception: " + exception.getMessage());
+        }
+        return set1;
     }
 
     public <T> java.util.HashSet<T> intersectionSet(java.util.HashSet<T> set1, java.util.HashSet<T> set2) {
-        set1.retainAll(set2);
+        try {
+            if (set1 != null && set2 != null) {
+                boolean isSuccess = set1.retainAll(set2);
+                if (isSuccess) {
+                    System.out.print("Intersection: ");
+                } else {
+                    System.out.println("Fail.");
+                }
+            }
+        } catch (Exception exception) {
+            System.out.println("Exception: " + exception.getMessage());
+        }
         return set1;
     }
 
     public <T> java.util.HashSet<T> differenceSet(java.util.HashSet<T> set1, java.util.HashSet<T> set2) {
-        set1.removeAll(set2);
+        try {
+            if (set1 != null && set2 != null) {
+                boolean isSuccess = set2.removeAll(set1);
+                if (isSuccess) {
+                    System.out.print("Difference: ");
+                } else {
+                    System.out.println("Fail.");
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex.getMessage());
+        }
         return set1;
     }
 
     public <T> boolean subSet(java.util.HashSet<T> set1, java.util.HashSet<T> set2) {
-        return set2.containsAll(set1);
+        boolean isExist = false;
+        if (set1 != null && set2 != null) {
+            isExist = set1.containsAll(set2);
+        }
+        return isExist;
+    }
+
+    public <T>java.util.HashSet<T> removeAllElements(java.util.HashSet<T> hashSet){
+        if (hashSet != null){
+            hashSet.clear();
+        }
+        return hashSet;
+    }
+
+    public <T> void print(java.util.HashSet<T> hashSet) {
+        try {
+            if (hashSet != null) {
+                System.out.print("Set: ");
+                hashSet.forEach(elements -> System.out.print(elements + ", "));
+            }
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex.getMessage());
+        }
+        System.out.println();
     }
 
     public void load() {
-        System.out.println(insertElementToHashSetString());
-        System.out.println(insertElementToHashSetInteger());
-        System.out.println(unionSet(insertElementToHashSetString(), createHashSetOriginString()));
-        System.out.println(unionSet(insertElementToHashSetInteger(), createHashSetOriginInteger()));
-        System.out.println(intersectionSet(insertElementToHashSetString(), createHashSetOriginString()));
-        System.out.println(intersectionSet(insertElementToHashSetInteger(), createHashSetOriginInteger()));
-        System.out.println(differenceSet(insertElementToHashSetString(), createHashSetOriginString()));
-        System.out.println(subSet(insertElementToHashSetString(), createHashSetOriginString()));
-        System.out.println(subSet(insertElementToHashSetInteger(), createHashSetOriginInteger()));
+        java.util.HashSet<String> set1String = addElementsString();
+        print(set1String);
+        java.util.HashSet<String> set2String = addElementsString();
+        print(set2String);
+        System.out.println(subSet(set1String, set2String));
+        System.out.println(unionSet(set1String, set2String));
+        System.out.println(intersectionSet(set1String, set2String));
+        System.out.println(differenceSet(set1String, set2String));
+        java.util.HashSet<Integer> set1Integer = addElementsInteger();
+        print(set1Integer);
+        java.util.HashSet<Integer> set2Integer = addElementsInteger();
+        print(set2Integer);
+        System.out.println(subSet(set1Integer, set2Integer));
+        System.out.println(unionSet(set1Integer, set2Integer));
+        System.out.println(intersectionSet(set1Integer, set2Integer));
+        System.out.println(differenceSet(set1Integer, set2Integer));
+        System.out.println(removeAnElementSpecifiedString(set1String));
+        System.out.println(removeAnElementSpecifiedString(set2String));
+        System.out.println(removeAnElementSpecifiedInteger(set1Integer));
+        System.out.println(removeAnElementSpecifiedInteger(set2Integer));
+        System.out.println(removeAllElements(set1String));
+        System.out.println(removeAllElements(set2String));
+        System.out.println(removeAllElements(set1Integer));
+        System.out.println(removeAllElements(set2Integer));
     }
 
     public static void main(String[] args) {
