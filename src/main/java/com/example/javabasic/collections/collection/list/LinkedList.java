@@ -155,8 +155,8 @@ public class LinkedList implements List {
     public List<String> changeAnElement(List<String> linkedList) {
         Scanner scanner = new Scanner(System.in);
         try {
-            if (linkedList != null){
-                if (!linkedList.isEmpty()){
+            if (linkedList != null) {
+                if (!linkedList.isEmpty()) {
                     System.out.print("Input a position of element to change: ");
                     int pos = scanner.nextInt();
                     System.out.print("Input an element to change: ");
@@ -176,8 +176,8 @@ public class LinkedList implements List {
         Scanner scanner = new Scanner(System.in);
         String element = "";
         try {
-            if (linkedList != null){
-                if (!linkedList.isEmpty()){
+            if (linkedList != null) {
+                if (!linkedList.isEmpty()) {
                     System.out.print("Input a position of element to remove from the list: ");
                     int pos = scanner.nextInt();
                     element = linkedList.remove(pos);
@@ -200,19 +200,19 @@ public class LinkedList implements List {
                 System.out.println("Empty.");
             }
         }
-       return linkedList;
+        return linkedList;
     }
 
-    private <T> void print(List<T> linkedList){
+    private <T> void print(List<T> linkedList) {
         try {
-            if (linkedList != null){
+            if (linkedList != null) {
                 Iterator<T> iterator = linkedList.iterator();
-                while (iterator.hasNext()){
+                while (iterator.hasNext()) {
                     System.out.print(iterator.next());
                     System.out.print(", ");
                 }
             }
-        }catch (Exception exception){
+        } catch (Exception exception) {
             System.out.println("Exception: " + exception.getMessage());
         }
         System.out.println();

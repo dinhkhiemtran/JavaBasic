@@ -6,13 +6,13 @@ import java.util.Vector;
 
 public class Stack extends Vector {
 
-    public java.util.Stack<String> createStack(){
-        java.util.Stack<String> stack = new java.util.Stack<>();
+    public <T> java.util.Stack<T> createAStack() {
+        java.util.Stack<T> stack = new java.util.Stack<>();
         return stack;
     }
 
-    public java.util.Stack<String> pushElement(){
-        java.util.Stack<String> stack = createStack();
+    public java.util.Stack<String> pushElements() {
+        java.util.Stack<String> stack = createAStack();
         stack.push("Java");
         stack.push("Javascript");
         stack.push("Python");
@@ -21,59 +21,80 @@ public class Stack extends Vector {
         return stack;
     }
 
-    public String popAnElementFormStack(){
-        java.util.Stack<String> stack = pushElement();
-        String element = "";
-        if(!stack.isEmpty()){
-            element = stack.pop();
-        }
-        return element;
-    }
-
-    public String peekAnElement(){
-        java.util.Stack<String> stack = pushElement();
-        String element = "";
-        if(!stack.isEmpty()){
-            element = stack.peek();
-        }
-        return element;
-    }
-
-    public String searchPositionOfAStack(){
-        Scanner scanner = new Scanner(System.in);
-        java.util.Stack<String> stack = pushElement();
-        int pos = 0;
-        try{
-            if(!stack.isEmpty()){
-                System.out.print("Input element that you want to search a position: ");
-                String element = scanner.next();
-                pos = stack.search(element);
+    public <T> java.util.Stack<T> popAnElement(java.util.Stack<T> stack) {
+        try {
+            if (stack != null) {
+                if (!stack.isEmpty()) {
+                    String element = (String) stack.pop();
+                    System.out.println("Element is popped: " + element);
+                }
             }
-        }catch (InputMismatchException inputMismatchException){
-            System.out.println(inputMismatchException.getMessage());
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("Exception: " + ex.getMessage());
         }
-        return "Position: " + pos;
+        return stack;
     }
 
-    public void popElementsFromStack(){
-        try{
-            java.util.Stack<String> stack = pushElement();
-            while (!stack.isEmpty()){
-               String elements = stack.pop();
-               System.out.println("Pop: " + elements);
+    public <T> java.util.Stack<T> popAllElements(java.util.Stack<T> stack) {
+        try {
+            if (stack != null) {
+                while (!stack.isEmpty()) {
+                    String element = (String) stack.pop();
+                    System.out.println("Element is popped: " + element);
+                }
             }
-            System.out.println(stack);
-        }catch (Exception e){
-            System.out.println("Exception: " + e.getMessage());
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex.getMessage());
         }
+        return stack;
     }
-    public void load(){
-        popElementsFromStack();
-        System.out.println(searchPositionOfAStack());
-        System.out.println(popAnElementFormStack());
+
+    public <T> String peekAnElement(java.util.Stack<T> stack) {
+        String element = "";
+        try {
+            if (stack != null) {
+                if (!stack.isEmpty()) {
+                    element = (String) stack.peek();
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex.getMessage());
+        }
+        return element;
+    }
+
+    public <T> int searchAnElement(java.util.Stack<T> stack) {
+        Scanner scanner = new Scanner(System.in);
+        int pos = 0;
+        try {
+            if (stack != null) {
+                if (!stack.isEmpty()) {
+                    System.out.print("Input an element to search a position: ");
+                    String element = scanner.next();
+                    pos = stack.search(element);
+                }
+            }
+        } catch (InputMismatchException inputMismatchException) {
+            System.out.println("Exception: " + "Input wrong type.");
+        } catch (Exception exception) {
+            System.out.println("Exception: " + exception.getMessage());
+        }
+        return pos;
+    }
+
+    public <T> void print(java.util.Stack<T> stack){
+        System.out.print("Stack: ");
+        stack.forEach(elements -> System.out.print(elements + ", "));
+        System.out.println();
+    }
+
+    public void load() {
+        java.util.Stack<String> stack = pushElements();
+        print(stack);
+        System.out.println(peekAnElement(stack));
+        System.out.println(searchAnElement(stack));
+        System.out.println(popAnElement(stack));
+        System.out.println(popAllElements(stack));
     }
 
     public static void main(String[] args) {

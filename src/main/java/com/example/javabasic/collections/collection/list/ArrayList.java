@@ -193,24 +193,24 @@ public class ArrayList implements List {
         Scanner scanner = new Scanner(System.in);
         int pos = 0;
         try {
-            if (list != null){
-                if (!list.isEmpty()){
+            if (list != null) {
+                if (!list.isEmpty()) {
                     System.out.print("Input element to get a position: ");
                     String element = scanner.next();
                     if (list.indexOf(element) != -1) {
-                       pos = list.indexOf(element);
+                        pos = list.indexOf(element);
                     }
                 }
             }
-        }catch (InputMismatchException inputMismatchException){
+        } catch (InputMismatchException inputMismatchException) {
             System.out.println("Exception: " + "Input wrong type.");
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("Exception: " + ex.getMessage());
         }
         return pos;
     }
 
-    public <T> void print(List<T> list){
+    public <T> void print(List<T> list) {
         System.out.print("List: ");
         list.forEach(elements -> System.out.print(elements + ", "));
         System.out.println();
