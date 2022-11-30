@@ -3,6 +3,9 @@ package com.example.javabasic.collections.collection.queue;
 import java.util.*;
 
 public class PriorityQueue implements Queue {
+
+    private static final int CAPACITY = 8;
+
     @Override
     public int size() {
         return 0;
@@ -103,114 +106,130 @@ public class PriorityQueue implements Queue {
         return null;
     }
 
-    private Queue<String> createPriorityQueue(){
-        Queue<String> priority = new java.util.PriorityQueue<>();
+    private <T> java.util.PriorityQueue<T> createPriorityQueue() {
+        java.util.PriorityQueue<T> priority = new java.util.PriorityQueue<>();
         return priority;
     }
 
-
-    private Queue<Integer> offerElementToPriorityQueueInt(){
-        Queue<Integer> priority = new java.util.PriorityQueue<>();
-        for(int i = 0 ; i <= 10 ; i++){
-            priority.offer(i);
-        }
-        return priority;
+    private <T> boolean isFull(java.util.PriorityQueue<T> priority) {
+        return priority.size() >= CAPACITY;
     }
 
-    public Queue<String> addElementPriorityQueueStr(){
-        Queue<String> priority = createPriorityQueue();
-       try{
-           priority.add("Java");
-           priority.add("Javascript");
-           priority.add("Python");
-           priority.add("Go");
-           priority.add("Php");
-       }catch (InputMismatchException inputMismatchException){
-           System.out.print("Exception: " + inputMismatchException.getMessage());
-       }catch (Exception ex){
-           System.out.println(ex.getMessage());
-       }
-       return priority;
-    }
-
-    public String getAHeadOfElementInPriorityQueueStr(){
-        Queue<String> priority = addElementPriorityQueueStr();
-        return priority.peek();
-    }
-
-    public int getAHeadOfElementInPriorityQueueInt(){
-        Queue<Integer> priority = offerElementToPriorityQueueInt();
-        return priority.peek();
-    }
-
-    public boolean removeElementInPriorityQueueStr(){
-        Queue<String> priority = addElementPriorityQueueStr();
+    private java.util.PriorityQueue<Integer> offerElementsInteger() {
         Scanner scanner = new Scanner(System.in);
-        boolean isRemoved = false;
-        try{
-            System.out.print("Input a position that you want to remove: ");
-            String element = scanner.next();
-            isRemoved = priority.remove(element);
-        }catch (InputMismatchException inputMismatchException){
-            System.out.print("Exception: " + inputMismatchException.getMessage());
-        }catch (Exception ex){
-            System.out.print("Exception " + ex.getMessage());
+        java.util.PriorityQueue<Integer> priorityQueue = createPriorityQueue();
+        try {
+            if (priorityQueue != null) {
+                while (!isFull(priorityQueue)) {
+                    System.out.print("Add elements(Integer): ");
+                    Integer elements = scanner.nextInt();
+                    priorityQueue.offer(elements);
+                }
+            }
+        } catch (InputMismatchException inputMismatchException) {
+            System.out.println("Exception: " + "Input wrong type.");
+        } catch (Exception exception) {
+            System.out.println("Exception: " + exception.getMessage());
         }
-        iteratorPriorityQueueStr(priority);
-        return isRemoved;
+        return priorityQueue;
     }
 
-    public int pollElementInPriorityQueueInt(){
-        Queue<Integer> priority = offerElementToPriorityQueueInt();
-        int element = 0;
-        try{
-            element = priority.poll();
-        }catch (InputMismatchException inputMismatchException){
-            System.out.print("Exception: " + inputMismatchException.getMessage());
-        }catch (Exception ex){
-            System.out.print("Exception: " + ex.getMessage());
+    public java.util.PriorityQueue<String> addElements() {
+        Scanner scanner = new Scanner(System.in);
+        java.util.PriorityQueue<String> priorityQueue = createPriorityQueue();
+        try {
+            if (priorityQueue != null) {
+                while (!isFull(priorityQueue)) {
+                    System.out.print("Add elements(String): ");
+                    String element = scanner.next();
+                    priorityQueue.add(element);
+                }
+            }
+        } catch (InputMismatchException inputMismatchException) {
+            System.out.println("Exception: " + "Input wrong type.");
+        } catch (Exception exception) {
+            System.out.println("Exception: " + exception.getMessage());
         }
-        forEachPriorityQueueInt(priority);
+        return priorityQueue;
+    }
+
+    public <T> T getHeadOfElement(java.util.PriorityQueue<T> priorityQueue) {
+        T element = null;
+        if (priorityQueue != null) {
+            if (!priorityQueue.isEmpty()) {
+                element = priorityQueue.peek();
+            }
+        }
         return element;
     }
 
-    private void iteratorPriorityQueueStr(Queue<String> priority){
-         Iterator<String> iterator = priority.iterator();
-        System.out.print("Priority: ");
-         while (iterator.hasNext()){
-             System.out.print(iterator.hasNext());
-             System.out.print(",");
-         }
-        System.out.println();
+    public java.util.PriorityQueue<String> removeAnElement(java.util.PriorityQueue<String> priorityQueue) {
+        Scanner scanner = new Scanner(System.in);
+        try {
+            if (priorityQueue != null) {
+                if (!priorityQueue.isEmpty()) {
+                    System.out.print("Input an element to remove(String): ");
+                    String element = scanner.next();
+                    if (priorityQueue.contains(element)) {
+                        boolean isSuccess = priorityQueue.remove(element);
+                        if (isSuccess) {
+                            System.out.println("Element is removed successfully.");
+                        } else {
+                            System.out.println("Fail.");
+                        }
+                    }
+                }
+            }
+        } catch (InputMismatchException inputMismatchException) {
+            System.out.println("Exception: " + "Input wrong type.");
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex.getMessage());
+        }
+        return priorityQueue;
     }
 
-    private Queue<Integer> customPriorityQueue(){
-        Queue<Integer> custom = new java.util.PriorityQueue<>(new CustomComparator());
-        custom.add(5);
-        custom.add(2);
-        custom.add(3);
-        custom.add(1);
-        custom.add(9);
-        custom.add(7);
-        custom.add(6);
-        return custom;
+    public <T> java.util.PriorityQueue<T> pollAnElement(java.util.PriorityQueue<T> priorityQueue) {
+        try {
+            if (priorityQueue != null) {
+                if (!priorityQueue.isEmpty()) {
+                    T result = priorityQueue.poll();
+                    System.out.println("Element is polled: " + result);
+                }
+            }
+        } catch (InputMismatchException inputMismatchException) {
+            System.out.println("Exception: " + "Input wrong type.");
+        } catch (Exception exception) {
+            System.out.println("Exception: " + exception.getMessage());
+        }
+        return priorityQueue;
     }
 
-    private void forEachPriorityQueueInt(Queue<Integer> priority){
-        System.out.println("Priority Queue: ");
-        for(Integer index : priority){
-            System.out.print(index);
-            System.out.print(",");
+    public <T> void print(java.util.PriorityQueue<T> priorityQueue) {
+        if (priorityQueue != null) {
+            System.out.print("Priority Queue: ");
+            priorityQueue.forEach(elements -> System.out.print(elements + ", "));
         }
         System.out.println();
     }
 
-    private void load(){
-        System.out.print( getAHeadOfElementInPriorityQueueStr());
-        System.out.print(getAHeadOfElementInPriorityQueueInt());
-        System.out.print( removeElementInPriorityQueueStr());
-        System.out.print(pollElementInPriorityQueueInt());
-        System.out.print( customPriorityQueue());
+    public <T> java.util.PriorityQueue<T> removeAllElements(java.util.PriorityQueue<T> priorityQueue) {
+        if (priorityQueue != null) {
+            priorityQueue.clear();
+        }
+        return priorityQueue;
+    }
+
+    private void load() {
+        java.util.PriorityQueue<String> priorityQueueString = addElements();
+        java.util.PriorityQueue<Integer> priorityQueueInteger = offerElementsInteger();
+        print(priorityQueueString);
+        print(priorityQueueInteger);
+        System.out.println(getHeadOfElement(priorityQueueString));
+        System.out.println(getHeadOfElement(priorityQueueInteger));
+        System.out.println(removeAnElement(priorityQueueString));
+        System.out.println(pollAnElement(priorityQueueInteger));
+        System.out.println(removeAllElements(priorityQueueString));
+        System.out.println(removeAllElements(priorityQueueInteger));
     }
 
     public static void main(String[] args) {
@@ -223,15 +242,13 @@ class CustomComparator implements Comparator<Integer> {
 
     @Override
     public int compare(Integer number1, Integer number2) {
-        int value =  number1.compareTo(number2);
+        int value = number1.compareTo(number2);
         // elements are sorted in reverse order
         if (value > 0) {
             return -1;
-        }
-        else if (value < 0) {
+        } else if (value < 0) {
             return 1;
-        }
-        else {
+        } else {
             return 0;
         }
     }

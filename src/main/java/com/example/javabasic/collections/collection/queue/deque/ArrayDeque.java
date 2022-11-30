@@ -3,6 +3,9 @@ package com.example.javabasic.collections.collection.queue.deque;
 import java.util.*;
 
 public class ArrayDeque implements Deque {
+
+    private static final int CAPACITY = 2;
+
     @Override
     public void addFirst(Object o) {
 
@@ -178,321 +181,303 @@ public class ArrayDeque implements Deque {
         return null;
     }
 
-    public Deque<String> createArrayDequeString(){
-        Deque<String> arrayDeque = new java.util.ArrayDeque<>();
+    public <T> java.util.ArrayDeque<T> createArrayDeque() {
+        java.util.ArrayDeque<T> arrayDeque = new java.util.ArrayDeque<>(8);
         return arrayDeque;
     }
 
-    public Deque<Integer> createArrayDequeInteger(){
-        Deque<Integer> arrayDeque = new java.util.ArrayDeque<>();
-        return arrayDeque;
+    public <T> boolean isFull(java.util.ArrayDeque<T> arrayDeque) {
+        return arrayDeque.size() >= CAPACITY;
     }
 
-    public Deque<String> addElementToArrayDequeString(){
-        Deque<String> arrayDeque = createArrayDequeString();
-        arrayDeque.add("Java");
-        arrayDeque.add("Javascript");
-        arrayDeque.add("Python");
-        arrayDeque.add("Php");
-        arrayDeque.add("Go");
-        return arrayDeque;
-    }
-
-    public Deque<Integer> addElementToArrayDequeInteger(){
-        Deque<Integer> arrayDeque = createArrayDequeInteger();
-        for(int i = 0 ; i <= 10 ; i++){
-            arrayDeque.offer(i);
+    public Deque<String> addElementsString() {
+        Scanner scanner = new Scanner(System.in);
+        java.util.ArrayDeque<String> arrayDeque = createArrayDeque();
+        try {
+            if (arrayDeque != null) {
+                while (!isFull(arrayDeque)) {
+                    System.out.print("Add elements(String): ");
+                    String element = scanner.next();
+                    arrayDeque.add(element);
+                }
+            }
+        } catch (InputMismatchException inputMismatchException) {
+            System.out.println("Exception: " + "Input wrong type.");
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex.getMessage());
         }
         return arrayDeque;
     }
 
-    public Deque<String> addFirstElementToArrayDequeString(){
-        Deque<String> arrayDeque = addElementToArrayDequeString();
+    public Deque<Integer> offerElementsInteger() {
         Scanner scanner = new Scanner(System.in);
-        try{
-            System.out.print("Input (STRING) an element to add to first of array deque: ");
-            String element = scanner.next();
-            arrayDeque.addFirst(element);
-        }catch (InputMismatchException inputMismatchException){
-            System.out.print("Wrong Type");
-        }catch (Exception ex){
+        java.util.ArrayDeque<Integer> arrayDeque = createArrayDeque();
+        try {
+            if (arrayDeque != null) {
+                while (!isFull(arrayDeque)) {
+                    System.out.print("Offer elements(Integer): ");
+                    Integer element = scanner.nextInt();
+                    arrayDeque.offer(element);
+                }
+            }
+        } catch (InputMismatchException inputMismatchException) {
+            System.out.println("Exception: " + "Input wrong type.");
+        } catch (Exception exception) {
+            System.out.println("Exception: " + exception.getMessage());
+        }
+        return arrayDeque;
+    }
+
+    public Deque<String> addFirstElement(java.util.ArrayDeque<String> arrayDeque) {
+        Scanner scanner = new Scanner(System.in);
+        try {
+            if (arrayDeque != null) {
+                removeFirstElement(arrayDeque);
+                if (!isFull(arrayDeque)) {
+                    System.out.print("Add an element(String) to a head of an array deque: ");
+                    String element = scanner.next();
+                    arrayDeque.addFirst(element);
+                }
+            }
+        } catch (InputMismatchException inputMismatchException) {
+            System.out.print("Input wrong type.");
+        } catch (Exception ex) {
             System.out.print("Exception: " + ex.getMessage());
         }
         return arrayDeque;
     }
 
-    public Deque<Integer> addFirstElementToArrayDequeInteger(){
-        Deque<Integer> deque = addElementToArrayDequeInteger();
+    public <T> java.util.ArrayDeque<T> removeFirstElement(java.util.ArrayDeque<T> arrayDeque) {
+        try {
+            if (arrayDeque != null) {
+                if (!arrayDeque.isEmpty()) {
+                    T element = arrayDeque.removeFirst();
+                    System.out.print("The first Element is removed: " + element);
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex.getMessage());
+        }
+        return arrayDeque;
+    }
+
+    public Deque<Integer> offerFirstElement(java.util.ArrayDeque<Integer> arrayDeque) {
         Scanner scanner = new Scanner(System.in);
-        try{
-            System.out.print("Input (Integer) an element to add to FIRST element of array deque: ");
-            Integer element = scanner.nextInt();
-            deque.offerFirst(element);
-        }catch (InputMismatchException inputMismatchException){
+        try {
+            if (arrayDeque != null) {
+                pollFirstElement(arrayDeque);
+                if (!isFull(arrayDeque)) {
+                    System.out.print("Offer an element(Integer) to a head of an array deque: ");
+                    Integer element = scanner.nextInt();
+                    boolean isSuccess = arrayDeque.offerFirst(element);
+                    if (isSuccess) {
+                        System.out.println("Element is offered to a head of an array deque successfully");
+                    } else {
+                        System.out.println("Fail.");
+                    }
+                }
+            }
+        } catch (InputMismatchException inputMismatchException) {
             System.out.print("Exception: " + inputMismatchException.getMessage());
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.print("Exception: " + ex.getMessage());
         }
-        return deque;
+        return arrayDeque;
     }
 
-    public Deque<String> addLastElementToArrayDequeString(){
-        Deque<String> deque = addElementToArrayDequeString();
-        Scanner scanner = new Scanner(System.in);
-        try{
-            System.out.print("Input (STRING) an element to add to LAST element of array deque: ");
-            String element = scanner.next();
-            deque.addLast(element);
-        }catch (InputMismatchException in){
-            System.out.print("Wrong type " + in.getMessage());
-        }catch (Exception ex){
-            System.out.print("Exception: " + ex.getMessage());
-        }
-        return deque;
-    }
-
-    public Deque<Integer> addLastElementToArrayDequeInteger(){
-        Deque<Integer> deque = addElementToArrayDequeInteger();
-        Scanner scanner = new Scanner(System.in);
-        try{
-            System.out.print("Input (INTEGER) an element to add to LAST element of array deque: ");
-            Integer element = scanner.nextInt();
-            deque.offerLast(element);
-        }catch (InputMismatchException in){
-            System.out.print("Wrong type " + in.getMessage());
-        }catch (Exception ex){
-            System.out.print("Exception: " + ex.getMessage());
-        }
-        return deque;
-    }
-
-    public String getHeadElementOfArrayDequeString(){
-        Deque<String> deque = addFirstElementToArrayDequeString();
-        String element = "";
+    public <T> java.util.ArrayDeque<T> pollFirstElement(java.util.ArrayDeque<T> arrayDeque) {
         try {
-            element = deque.getFirst();
-        }catch (NoSuchElementException ex){
-            System.out.print("Empty");
-        }
-        return element;
-    }
-
-    public Integer getHeadElementOfArrayDequeInteger(){
-        Deque<Integer> deque = addFirstElementToArrayDequeInteger();
-        Integer element = 0;
-        try{
-            if(deque != null){
-                element = deque.getFirst();
+            if (arrayDeque != null) {
+                if (!arrayDeque.isEmpty()) {
+                    T element = arrayDeque.pollFirst();
+                    System.out.println("Element is removed: " + element);
+                }
             }
-        }catch (NoSuchElementException noSuchElementException){
-            System.out.print("Empty! ");
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex.getMessage());
         }
-        catch (Exception e){
-            System.out.print("Exception: " + e.getMessage());
-        }
-        return element;
+        return arrayDeque;
     }
 
-    public String getLastElementOfArrayDequeString(){
-        Deque<String> deque = addLastElementToArrayDequeString();
-        String element = "";
-        try{
-            element = deque.getLast();
-        }catch (NoSuchElementException no){
-            System.out.print("Empty! ");
-        }catch (Exception ex){
-            System.out.print("Exception: " + ex.getMessage());
-        }
-        return element;
-    }
-
-    public Integer getLastElementOfArrayDequeInteger(){
-        Deque<Integer> deque = addLastElementToArrayDequeInteger();
-        Integer element = 0;
-        try{
-            element = deque.getLast();
-        }catch (NoSuchElementException no){
-            System.out.println("Empty! ");
-        }catch (Exception ex){
-            System.out.print("Exception: " + ex.getMessage());
-        }
-        return element;
-    }
-
-    public Deque<String> removeAnElementSpecifiedOfArrayDequeString(){
-        Deque<String> deque = addElementToArrayDequeString();
+    public Deque<String> addLastElement(java.util.ArrayDeque<String> arrayDeque) {
         Scanner scanner = new Scanner(System.in);
-        boolean isSuccess;
-        try{
-            System.out.print("Input a POSITION of element into ArrayDeque STRING that you want to remove: ");
-            int pos = scanner.nextInt();
-            isSuccess = deque.remove(pos);
-            if (isSuccess){
-                System.out.println("An Element is removed successful!");
+        try {
+            if (arrayDeque != null) {
+                removeLastElement(arrayDeque);
+                if (!isFull(arrayDeque)) {
+                    System.out.print("Add an element(String) to a last of an array deque: ");
+                    String element = scanner.next();
+                    arrayDeque.addLast(element);
+                }
             }
-        }catch (InputMismatchException inputMismatchException){
-            System.out.print("Wrong type: " + inputMismatchException.getMessage());
-        }catch (Exception ex){
-            System.out.print("Exception: " + ex.getMessage());
+        } catch (InputMismatchException inputMismatchException) {
+            System.out.println("Exception: " + "Input wrong type.");
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex.getMessage());
         }
-        return deque;
+        return arrayDeque;
     }
 
-    public Deque<Integer> removeAnElementSpecifiedOfArrayDequeInteger(){
-        Deque<Integer> deque = addElementToArrayDequeInteger();
+    public <T>java.util.ArrayDeque<T> removeLastElement(java.util.ArrayDeque<T> arrayDeque){
+        try {
+            if (arrayDeque != null){
+                if (!arrayDeque.isEmpty()){
+                    T element = arrayDeque.removeFirst();
+                    System.out.println("A element is removed: " + element);
+                }
+            }
+        }catch (Exception ex){
+            System.out.println("Exception: " + ex.getMessage());
+        }
+        return arrayDeque;
+    }
+
+    public Deque<Integer> offerLastElement(java.util.ArrayDeque<Integer> arrayDeque){
         Scanner scanner = new Scanner(System.in);
-        boolean isSuccess;
-        try{
-            System.out.print("Input POSITION of element in ArrayDeque INTEGER that you want to remove: ");
-            int pos = scanner.nextInt();
-            isSuccess = deque.remove(pos);
-            if(isSuccess){
-                System.out.print("Element is removed from array deque integer!");
-            }
-        }catch (InputMismatchException in){
-            System.out.print("Wrong type: " + in.getMessage());
-        }catch (Exception ex){
-            System.out.print("Exception: " + ex.getMessage());
-        }
-        return deque;
-    }
-
-    public Deque<String> pollAnElementSpecifiedOfArrayDequeString(){
-        Deque<String> deque = addElementToArrayDequeString();
-        try{
-            deque.poll();
-        }catch (InputMismatchException inputMismatchException){
-            System.out.print("Wrong type: " + inputMismatchException.getMessage());
-        }catch (Exception ex){
-            System.out.print("Exception: " + ex.getMessage());
-        }
-        return deque;
-    }
-
-    public Deque<String> pollAnElementSpecifiedOfArrayDequeInteger(){
-        Deque<String> deque = addElementToArrayDequeString();
-        try{
-            deque.poll();
-        }catch (InputMismatchException inputMismatchException){
-            System.out.print("Wrong type: " + inputMismatchException.getMessage());
-        }catch (Exception ex){
-            System.out.print("Exception: " + ex.getMessage());
-        }
-        return deque;
-    }
-
-    public Deque<String> removeFirstElementFromArrayDequeString(){
-        Deque<String> deque = addFirstElementToArrayDequeString();
         try {
-            System.out.print("First element is removed: " + deque.removeFirst());
-        }catch (NoSuchElementException no){
-            System.out.print("Empty!");
-        }catch (Exception ex){
-            System.out.print("Exception: " + ex.getMessage());
+            if (arrayDeque != null){
+                pollLastElement(arrayDeque);
+                if (!isFull(arrayDeque)){
+                    System.out.println("Offer an element to a last of a array deque: ");
+                    Integer element = scanner.nextInt();
+                    boolean isSuccess = arrayDeque.offer(element);
+                    if (isSuccess){
+                        System.out.println("Element is offed to a last of a array deque successfully.");
+                    }else {
+                        System.out.println("Fail.");
+                    }
+                }
+            }
+        }catch (Exception exception){
+            System.out.println("Exception: " + exception.getMessage());
         }
-        return deque;
+        return arrayDeque;
     }
 
-    public Deque<Integer> removeFirstElementFromArrayDequeInteger(){
-        Deque<Integer> deque = addFirstElementToArrayDequeInteger();
+    public <T> java.util.ArrayDeque<T> pollLastElement(java.util.ArrayDeque<T> arrayDeque){
         try {
-            System.out.print("First element is removed: " + deque.pollFirst());
-        }catch (NoSuchElementException no){
-            System.out.print("Empty!");
-        }catch (Exception ex){
-            System.out.print("Exception: " + ex.getMessage());
-        }
-        return deque;
-    }
-
-    public Deque<String> removeLastElementFromArrayDequeString(){
-        Deque<String> deque = addLastElementToArrayDequeString();
-        try{
-            System.out.print("Last element is removed from array deque: " + deque.removeLast());
-        }catch (NoSuchElementException no){
-            System.out.print("Empty!");
-        }catch (Exception ex){
-            System.out.print("Exception: " + ex.getMessage());
-        }
-        return deque;
-    }
-
-    public Deque<Integer> removeLastElementFromArrayDequeInteger(){
-        Deque<Integer> deque = addLastElementToArrayDequeInteger();
-        try{
-            System.out.print("Last element is removed from array deque: " + deque.pollLast());
-        }catch (NoSuchElementException no){
-            System.out.print("Empty!");
-        }catch (Exception ex){
-            System.out.print("Exception: " + ex.getMessage());
-        }
-        return deque;
-    }
-
-    public Deque<String> removeAllElementsFromArrayDequeString(){
-        Deque<String> deque = addElementToArrayDequeString();
-        if(deque != null){
-            if(!deque.isEmpty()){
-                deque.clear();
-            }else {
-                System.out.println("Empty! ");
+            if (arrayDeque != null){
+                if (!arrayDeque.isEmpty()){
+                    T element = arrayDeque.pollLast();
+                    System.out.println("A last Element is polled: " + element);
+                }
             }
+        }catch (Exception ex){
+            System.out.println("Exception: " + ex.getMessage());
         }
-        return deque;
+        return arrayDeque;
     }
 
-    public Deque<Integer> removeAllElementsFromArrayDequeInteger(){
-        Deque<Integer> deque = addElementToArrayDequeInteger();
-        if(deque != null){
-            if(!deque.isEmpty()){
-                deque.clear();
-            }else {
-                System.out.println("Empty! ");
-            }
-        }
-        return deque;
-    }
 
-    public void printUsingForEach(Deque<String> deque){
-        System.out.print("Deque: ");
-       for(String str : deque){
-           System.out.print(str);
-           System.out.print(",");
+    public <T> T getFirstElement(java.util.ArrayDeque<T> arrayDeque) {
+        T element = null;
+       if (arrayDeque != null){
+           if (!arrayDeque.isEmpty()){
+               element = arrayDeque.getFirst();
+           }
        }
-        System.out.println();
+       return element;
     }
 
-    public void printUsingIterator(Deque<Integer> deque){
-        Iterator<Integer> iterator = deque.iterator();
-        System.out.print("Deque: ");
-        while (iterator.hasNext()){
-            System.out.print(iterator.next());
-            System.out.print(",");
+    public <T> T getLastElement(java.util.ArrayDeque<T> arrayDeque) {
+        T element = null;
+       if (arrayDeque != null){
+           if (!arrayDeque.isEmpty()){
+               element = arrayDeque.getLast();
+           }
+       }
+       return element;
+    }
+
+    public Deque<String> removeAnElementSpecifiedString(java.util.ArrayDeque<String> arrayDeque) {
+        Scanner scanner = new Scanner(System.in);
+        try{
+            if (arrayDeque != null){
+                if (!arrayDeque.isEmpty()){
+                    System.out.print("Input an element(String) to remove: ");
+                    String element = scanner.next();
+                    if (arrayDeque.contains(element)){
+                        boolean isSuccess = arrayDeque.remove(element);
+                        if (isSuccess){
+                            System.out.println("Element is removed successfully.");
+                        }else {
+                            System.out.println("Fail.");
+                        }
+                    }
+                }
+            }
+        }catch (InputMismatchException inputMismatchException){
+            System.out.println("Exception: " + "Input wrong type.");
+        }catch (Exception ex){
+            System.out.println("Exception: " + ex.getMessage());
         }
-        System.out.println();
+        return arrayDeque;
     }
 
-    private void load(){
-        Deque<Integer> dequeInteger = addElementToArrayDequeInteger();
-        Deque<String> dequeString = addElementToArrayDequeString();
-        printUsingForEach(dequeString);
-        printUsingIterator(dequeInteger);
-        System.out.println(addFirstElementToArrayDequeString());
-        System.out.println(getHeadElementOfArrayDequeString());
-        System.out.println(getHeadElementOfArrayDequeInteger());
-        System.out.println(getLastElementOfArrayDequeString());
-        System.out.println(getLastElementOfArrayDequeInteger());
-        System.out.println(removeAnElementSpecifiedOfArrayDequeString());
-        System.out.println(removeAnElementSpecifiedOfArrayDequeInteger());
-        System.out.println(pollAnElementSpecifiedOfArrayDequeString());
-        System.out.println(pollAnElementSpecifiedOfArrayDequeInteger());
-        System.out.println(removeFirstElementFromArrayDequeString());
-        System.out.println(removeFirstElementFromArrayDequeInteger());
-        System.out.println(removeLastElementFromArrayDequeString());
-        System.out.println(removeLastElementFromArrayDequeInteger());
-        System.out.println(removeAllElementsFromArrayDequeString());
-        System.out.println(removeAllElementsFromArrayDequeInteger());
-        System.out.println(removeAllElementsFromArrayDequeInteger());
+    public Deque<Integer> removeAnElementSpecified(java.util.ArrayDeque<Integer> arrayDeque) {
+       Scanner scanner = new Scanner(System.in);
+       try{
+           if (arrayDeque != null){
+               if (!arrayDeque.isEmpty()){
+                   System.out.println("Input an element(Integer) to remove: ");
+                   Integer element = scanner.nextInt();
+                   if (arrayDeque.contains(element)){
+                       boolean isSuccess = arrayDeque.remove(element);
+                       if (isSuccess){
+                           System.out.println("Element is removed successfully.");
+                       }else {
+                           System.out.println("Fail.");
+                       }
+                   }
+               }
+           }
+       }catch (InputMismatchException inputMismatchException){
+           System.out.println("Exception: " + "Input wrong type.");
+       }catch (Exception ex){
+           System.out.println("Exception: " + ex.getMessage());
+       }
+       return arrayDeque;
+    }
+
+    public <T>java.util.ArrayDeque<T> pollAnElement(java.util.ArrayDeque<T> arrayDeque){
+        if (arrayDeque != null){
+            if (!arrayDeque.isEmpty()){
+               T element = arrayDeque.poll();
+               System.out.println("Element is polled: " + element);
+            }
+        }
+        return arrayDeque;
+    }
+
+    public <T>java.util.ArrayDeque<T> removeAnElement(java.util.ArrayDeque<T> arrayDeque){
+        if (arrayDeque != null){
+            if (!arrayDeque.isEmpty()){
+               T element = arrayDeque.remove();
+                System.out.println("Element is removed: " + element);
+            }
+        }
+        return arrayDeque;
+    }
+
+    public <T>java.util.ArrayDeque<T> removeAllElements(java.util.ArrayDeque<T> arrayDeque){
+        if (arrayDeque != null){
+            if (!arrayDeque.isEmpty()){
+                arrayDeque.clear();
+            }
+        }
+        return arrayDeque;
+    }
+
+    public <T> void print(java.util.ArrayDeque<T> arrayDeque){
+        if (arrayDeque != null){
+            System.out.print("ArrayDeque: ");
+            arrayDeque.forEach(elements -> System.out.print(elements + ", "));
+            System.out.println();
+        }
+    }
+
+    private void load() {
+
     }
 
     public static void main(String[] args) {

@@ -16,9 +16,9 @@ public class Algorithms {
         return arrayList;
     }
 
-    public List<Integer> createAListIntegerOrigin(){
+    public List<Integer> createAListIntegerOrigin() {
         List<Integer> list = new ArrayList<>();
-        for (int i = 10 ; i <= 20; i++){
+        for (int i = 10; i <= 20; i++) {
             list.add(i);
         }
         return list;
@@ -190,43 +190,43 @@ public class Algorithms {
         return count;
     }
 
-    public <T> boolean  checkTwoCollectionsContainSomeCommonElement(List<T> list1, List<T> list2){
+    public <T> boolean checkTwoCollectionsContainSomeCommonElement(List<T> list1, List<T> list2) {
         boolean disJoint = false;
         try {
-            if (list1 != null && list2 != null){
-                if (!list1.isEmpty() && !list2.isEmpty()){
-                    disJoint = Collections.disjoint(list1,list2);
+            if (list1 != null && list2 != null) {
+                if (!list1.isEmpty() && !list2.isEmpty()) {
+                    disJoint = Collections.disjoint(list1, list2);
                 }
             }
-        }catch (Exception exception){
+        } catch (Exception exception) {
             System.out.println("Exception: " + exception.getMessage());
         }
         return disJoint;
     }
 
-    public int getMinimumOfList(List<Integer> list){
+    public int getMinimumOfList(List<Integer> list) {
         int min = 0;
         try {
-            if (list != null){
-                if (!list.isEmpty()){
+            if (list != null) {
+                if (!list.isEmpty()) {
                     min = Collections.min(list);
                 }
             }
-        }catch (Exception exception){
+        } catch (Exception exception) {
             System.out.println("Exception: " + exception.getMessage());
         }
         return min;
     }
 
-    public int getMaximumOfList(List<Integer> list){
+    public int getMaximumOfList(List<Integer> list) {
         int max = 0;
-        try{
-            if (list != null){
-                if (!list.isEmpty()){
+        try {
+            if (list != null) {
+                if (!list.isEmpty()) {
                     max = Collections.max(list);
                 }
             }
-        }catch (Exception exception){
+        } catch (Exception exception) {
             System.out.println("Exception: " + exception.getMessage());
         }
         return max;
@@ -247,7 +247,7 @@ public class Algorithms {
         System.out.println("Shuffle: " + shuffleAList(listInteger));
         System.out.println("Reverse: " + reverseList(listString));
         System.out.println("Reverse: " + reverseList(listInteger));
-      /*  System.out.println("Filled: " + fillListInteger(listInteger));*/
+        /*  System.out.println("Filled: " + fillListInteger(listInteger));*/
         System.out.println("Swap: " + swapElement(listString));
         System.out.println("Swap: " + swapElement(listInteger));
         System.out.println("Search position: " + binarySearchElementInListString(listString));
