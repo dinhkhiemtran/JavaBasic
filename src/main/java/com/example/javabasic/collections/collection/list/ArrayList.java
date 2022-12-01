@@ -4,6 +4,22 @@ import java.util.*;
 
 public class ArrayList implements List {
 
+    private static final int CAPACITY = 8;
+
+    @Override
+    public int size() {
+        return 0;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public boolean contains(Object o) {
+        return false;
+    }
 
     @Override
     public Iterator iterator() {
@@ -33,6 +49,11 @@ public class ArrayList implements List {
     @Override
     public boolean addAll(int index, Collection c) {
         return false;
+    }
+
+    @Override
+    public void clear() {
+
     }
 
 
@@ -101,14 +122,36 @@ public class ArrayList implements List {
         return new Object[0];
     }
 
-    public List<String> initArrayList() {
-        List<String> list = new java.util.ArrayList<>();
-        list.add("Java");
-        list.add("Javascript");
-        list.add("Python");
-        list.add("Go");
-        list.add("Php");
-        list.add("C#");
+    public <T>java.util.ArrayList<T> createArrayList(){
+        java.util.ArrayList<T> arrayList = new java.util.ArrayList<>(CAPACITY);
+        return arrayList;
+    }
+
+    public <T> boolean isFull(java.util.ArrayList<T> arrayList){
+        return arrayList.size() >= CAPACITY;
+    }
+
+    public java.util.ArrayList<String> addElements() {
+        Scanner scanner = new Scanner(System.in);
+        java.util.ArrayList<String> list = createArrayList();
+        try{
+            if (list != null){
+                while (!isFull(list)){
+                    System.out.print("Add elements(String): ");
+                    String element = scanner.next();
+                    boolean isSuccess = list.add(element);
+                    if (isSuccess){
+                        System.out.println("Element is added successfully.");
+                    }else {
+                        System.out.println("Fail.");
+                    }
+                }
+            }
+        }catch (InputMismatchException inputMismatchException){
+            System.out.println("Exception: " + "Input wrong type.");
+        }catch (Exception ex){
+            System.out.println("Exception: " + ex.getMessage());
+        }
         return list;
     }
 
@@ -140,7 +183,8 @@ public class ArrayList implements List {
                     int pos = scanner.nextInt();
                     System.out.print("Input an element to change: ");
                     String element = scanner.next();
-                    list.set(pos, element);
+                    String result = list.set(pos, element);
+                    System.out.println("Element is changed: " + result);
                 }
             }
         } catch (InputMismatchException inputMismatchException) {
@@ -189,7 +233,7 @@ public class ArrayList implements List {
         return isExist;
     }
 
-    private <T> int positionElement(List<T> list) {
+    private <T> int positionOfElement(List<T> list) {
         Scanner scanner = new Scanner(System.in);
         int pos = 0;
         try {
@@ -216,38 +260,14 @@ public class ArrayList implements List {
         System.out.println();
     }
 
-
-    @Override
-    public void clear() {
-        List<String> list = initArrayList();
-        list.clear();
-    }
-
-    @Override
-    public int size() {
-        List<String> list = initArrayList();
-        return list.size();
-    }
-
-    @Override
-    public boolean isEmpty() {
-        List<String> list = initArrayList();
-        return list.isEmpty();
-    }
-
-    @Override
-    public boolean contains(Object o) {
-        return false;
-    }
-
     private void load() {
-        List<String> list = initArrayList();
+        List<String> list = addElements();
         print(list);
         System.out.println(accessElement(list));
         System.out.println(changeElementInArrayList(list));
         System.out.println(removeElement(list));
         System.out.println("Check element has exist: " + checkElementHasExist(list));
-        System.out.println("Position of element: " + positionElement(list));
+        System.out.println("Position of element: " + positionOfElement(list));
     }
 
     public static void main(String[] args) {

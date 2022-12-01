@@ -188,8 +188,8 @@ public class TreeSet implements NavigableSet {
                     System.out.print("Input an element(String) to remove: ");
                     String element = scanner.next();
                     if (treeSet.contains(element)) {
-                        boolean isSuccess = treeSet.remove(element);
-                        if (isSuccess) {
+                        boolean isRemoved = treeSet.remove(element);
+                        if (isRemoved) {
                             System.out.println("Element is removed successfully.");
                         } else {
                             System.out.println("Fail.");
@@ -213,8 +213,8 @@ public class TreeSet implements NavigableSet {
                     System.out.print("Input an element(Integer) to remove");
                     Integer element = scanner.nextInt();
                     if (treeSet.contains(element)) {
-                        boolean isSuccess = treeSet.remove(element);
-                        if (isSuccess) {
+                        boolean isRemoved = treeSet.remove(element);
+                        if (isRemoved) {
                             System.out.println("Element is removed successfully.");
                         }
                     }
@@ -238,6 +238,7 @@ public class TreeSet implements NavigableSet {
                     String element = scanner.next();
                     if (treeSet.contains(element)) {
                         results = (java.util.TreeSet<String>) treeSet.headSet(element);
+                        System.out.print("Head Set: ");
                     }
                 }
             }
@@ -259,6 +260,7 @@ public class TreeSet implements NavigableSet {
                     Integer element = scanner.nextInt();
                     if (treeSet.contains(element)) {
                         results = (java.util.TreeSet<Integer>) treeSet.headSet(element);
+                        System.out.print("Head Set: ");
                     }
                 }
             }
@@ -280,6 +282,7 @@ public class TreeSet implements NavigableSet {
                     String element = scanner.next();
                     if (treeSet.contains(element)) {
                         results = (java.util.TreeSet<String>) treeSet.tailSet(element);
+                        System.out.print("Tail Set: ");
                     }
                 }
             }
@@ -301,6 +304,7 @@ public class TreeSet implements NavigableSet {
                     Integer element = scanner.nextInt();
                     if (treeSet.contains(element)) {
                         results = (java.util.TreeSet<Integer>) treeSet.tailSet(element);
+                        System.out.print("Tail Set: ");
                     }
                 }
             }
@@ -324,6 +328,7 @@ public class TreeSet implements NavigableSet {
                     String element2 = scanner.next();
                     if (treeSet.contains(element1) && treeSet.contains(element2)) {
                         results = (java.util.TreeSet<String>) treeSet.subSet(element1, true, element2, true);
+                        System.out.print("Sub Set: ");
                     }
                 }
             }
@@ -347,6 +352,7 @@ public class TreeSet implements NavigableSet {
                     Integer element2 = scanner.nextInt();
                     if (treeSet.contains(element1) && treeSet.contains(element2)) {
                         results = (java.util.TreeSet<Integer>) treeSet.subSet(element1, true, element2, true);
+                        System.out.print("Sub Set: ");
                     }
                 }
             }

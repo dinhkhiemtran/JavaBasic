@@ -90,7 +90,10 @@ public class LinkedHashSet implements Set {
                 while (!isFull(linkedHashSet)) {
                     System.out.print("Add elements(String): ");
                     String element = scanner.next();
-                    linkedHashSet.add(element);
+                    boolean isSuccess = linkedHashSet.add(element);
+                    if (isSuccess) {
+                        System.out.println("Element is added successfully.");
+                    }
                 }
             }
         } catch (InputMismatchException inputMismatchException) {
@@ -109,7 +112,10 @@ public class LinkedHashSet implements Set {
                 while (!isFull(linkedHashSet)) {
                     System.out.print("Add elements(Integer): ");
                     Integer element = scanner.nextInt();
-                    linkedHashSet.add(element);
+                    boolean isSuccess = linkedHashSet.add(element);
+                    if (isSuccess) {
+                        System.out.println("Element is added successfully.");
+                    }
                 }
             }
         } catch (InputMismatchException inputMismatchException) {
@@ -140,8 +146,8 @@ public class LinkedHashSet implements Set {
                     System.out.print("Input an element to remove: ");
                     String element = scanner.next();
                     if (linkedHashSet.contains(element)) {
-                        boolean isSuccess = linkedHashSet.remove(element);
-                        if (isSuccess) {
+                        boolean isRemoved = linkedHashSet.remove(element);
+                        if (isRemoved) {
                             System.out.println("Element is removed successfully.");
                         } else {
                             System.out.println("Fail.");
@@ -167,8 +173,8 @@ public class LinkedHashSet implements Set {
                     System.out.print("Input an element to remove: ");
                     Integer element = scanner.nextInt();
                     if (linkedHashSet.contains(element)) {
-                        boolean isSuccess = linkedHashSet.remove(element);
-                        if (isSuccess) {
+                        boolean isRemoved = linkedHashSet.remove(element);
+                        if (isRemoved) {
                             System.out.println("Element is removed successfully.");
                         } else {
                             System.out.println("Fail.");
@@ -188,8 +194,8 @@ public class LinkedHashSet implements Set {
 
     public <T> java.util.LinkedHashSet<T> union(java.util.LinkedHashSet<T> set1, java.util.LinkedHashSet<T> set2) {
         if (set1 != null && set2 != null) {
-            boolean isSuccess = set1.addAll(set2);
-            if (isSuccess) {
+            boolean isUnion = set1.addAll(set2);
+            if (isUnion) {
                 System.out.print("Union: ");
             } else {
                 System.out.println("Non-Union.");
@@ -200,8 +206,8 @@ public class LinkedHashSet implements Set {
 
     public <T> java.util.LinkedHashSet<T> intersection(java.util.LinkedHashSet<T> set1, java.util.LinkedHashSet<T> set2) {
         if (set1 != null && set2 != null) {
-            boolean isSuccess = set1.retainAll(set2);
-            if (isSuccess) {
+            boolean isIntersection = set1.retainAll(set2);
+            if (isIntersection) {
                 System.out.print("Intersection: ");
             } else {
                 System.out.println("Non-Intersection.");
@@ -212,8 +218,8 @@ public class LinkedHashSet implements Set {
 
     public <T> java.util.LinkedHashSet<T> difference(java.util.LinkedHashSet<T> set1, java.util.LinkedHashSet<T> set2) {
         if (set1 != null && set2 != null) {
-            boolean isSuccess = set1.removeAll(set2);
-            if (isSuccess) {
+            boolean isDifference = set1.removeAll(set2);
+            if (isDifference) {
                 System.out.print("Difference: ");
             } else {
                 System.out.println("Non-Difference");

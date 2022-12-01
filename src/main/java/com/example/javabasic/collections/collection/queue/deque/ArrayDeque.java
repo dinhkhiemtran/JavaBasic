@@ -182,7 +182,7 @@ public class ArrayDeque implements Deque {
     }
 
     public <T> java.util.ArrayDeque<T> createArrayDeque() {
-        java.util.ArrayDeque<T> arrayDeque = new java.util.ArrayDeque<>(8);
+        java.util.ArrayDeque<T> arrayDeque = new java.util.ArrayDeque<>(CAPACITY);
         return arrayDeque;
     }
 
@@ -198,7 +198,10 @@ public class ArrayDeque implements Deque {
                 while (!isFull(arrayDeque)) {
                     System.out.print("Add elements(String): ");
                     String element = scanner.next();
-                    arrayDeque.add(element);
+                    boolean isSuccess = arrayDeque.add(element);
+                    if (isSuccess) {
+                        System.out.println("Element is added successfully.");
+                    }
                 }
             }
         } catch (InputMismatchException inputMismatchException) {
@@ -217,7 +220,10 @@ public class ArrayDeque implements Deque {
                 while (!isFull(arrayDeque)) {
                     System.out.print("Offer elements(Integer): ");
                     Integer element = scanner.nextInt();
-                    arrayDeque.offer(element);
+                    boolean isSuccess = arrayDeque.offer(element);
+                    if (isSuccess) {
+                        System.out.println("Element is offered successfully.");
+                    }
                 }
             }
         } catch (InputMismatchException inputMismatchException) {
@@ -397,8 +403,8 @@ public class ArrayDeque implements Deque {
                     System.out.print("Input an element(String) to remove: ");
                     String element = scanner.next();
                     if (arrayDeque.contains(element)) {
-                        boolean isSuccess = arrayDeque.remove(element);
-                        if (isSuccess) {
+                        boolean isRemoved = arrayDeque.remove(element);
+                        if (isRemoved) {
                             System.out.println("Element is removed successfully.");
                         } else {
                             System.out.println("Fail.");
@@ -422,8 +428,8 @@ public class ArrayDeque implements Deque {
                     System.out.println("Input an element(Integer) to remove: ");
                     Integer element = scanner.nextInt();
                     if (arrayDeque.contains(element)) {
-                        boolean isSuccess = arrayDeque.remove(element);
-                        if (isSuccess) {
+                        boolean isRemoved = arrayDeque.remove(element);
+                        if (isRemoved) {
                             System.out.println("Element is removed successfully.");
                         } else {
                             System.out.println("Fail.");

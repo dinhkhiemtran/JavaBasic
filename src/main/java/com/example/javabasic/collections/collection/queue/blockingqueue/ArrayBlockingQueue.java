@@ -152,7 +152,10 @@ public class ArrayBlockingQueue implements BlockingQueue {
             while (!isFull(blockingQueue)) {
                 System.out.print("Add elements(String): ");
                 String element = scanner.next();
-                blockingQueue.add(element);
+                boolean isSuccess = blockingQueue.add(element);
+                if (isSuccess){
+                    System.out.println("Element is added successfully.");
+                }
             }
         } catch (InputMismatchException in) {
             System.out.println("Exception: " + "Wrong type");
@@ -169,7 +172,10 @@ public class ArrayBlockingQueue implements BlockingQueue {
             while (!isFull(blockingQueue)) {
                 System.out.print("Add elements(Integer): ");
                 Integer element = scanner.nextInt();
-                blockingQueue.offer(element);
+                boolean isSuccess = blockingQueue.offer(element);
+                if (isSuccess){
+                    System.out.println("Element is offered successfully.");
+                }
             }
         } catch (InputMismatchException inputMismatchException) {
             System.out.print("Exception: " + inputMismatchException.getMessage());
@@ -179,7 +185,7 @@ public class ArrayBlockingQueue implements BlockingQueue {
         return blockingQueue;
     }
 
-    public <T> T accessAPeekElement(BlockingQueue<T> blockingQueue) {
+    public <T> T peekAElement(BlockingQueue<T> blockingQueue) {
         T element = null;
         try {
             if (blockingQueue != null) {
@@ -294,8 +300,8 @@ public class ArrayBlockingQueue implements BlockingQueue {
         BlockingQueue<String> blockingQueuePutString = putAnElementString();
         print(blockingQueueString);
         print(blockingQueuePutString);
-        System.out.println(accessAPeekElement(blockingQueueString));
-        System.out.println(accessAPeekElement(blockingQueuePutString));
+        System.out.println(peekAElement(blockingQueueString));
+        System.out.println(peekAElement(blockingQueuePutString));
         System.out.println(removeAnElement(blockingQueueString));
         System.out.println(removeAnElement(blockingQueuePutString));
         System.out.println(takeAnElement(blockingQueueString));
@@ -309,8 +315,8 @@ public class ArrayBlockingQueue implements BlockingQueue {
         BlockingQueue<Integer> blockingQueuePutInteger = putAnElementInteger();
         print(blockingQueueInteger);
         print(blockingQueuePutInteger);
-        System.out.println(accessAPeekElement(blockingQueueInteger));
-        System.out.println(accessAPeekElement(blockingQueuePutInteger));
+        System.out.println(peekAElement(blockingQueueInteger));
+        System.out.println(peekAElement(blockingQueuePutInteger));
         System.out.println(removeAnElement(blockingQueueInteger));
         System.out.println(removeAnElement(blockingQueuePutInteger));
         System.out.println(takeAnElement(blockingQueueInteger));

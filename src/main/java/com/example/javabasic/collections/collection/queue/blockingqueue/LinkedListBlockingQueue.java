@@ -154,7 +154,10 @@ public class LinkedListBlockingQueue implements BlockingQueue {
                 while (!isFull(blockingQueue)) {
                     System.out.print("Add elements(String): ");
                     String element = scanner.next();
-                    blockingQueue.add(element);
+                    boolean isSuccess = blockingQueue.add(element);
+                    if (isSuccess){
+                        System.out.println("Element is added successfully.");
+                    }
                 }
             }
         } catch (InputMismatchException inputMismatchException) {
@@ -173,7 +176,10 @@ public class LinkedListBlockingQueue implements BlockingQueue {
                 while (!isFull(integers)) {
                     System.out.print("Add elements(Integer): ");
                     Integer element = scanner.nextInt();
-                    integers.offer(element);
+                    boolean isSuccess = integers.offer(element);
+                    if (isSuccess){
+                        System.out.println("Element is offered successfully.");
+                    }
                 }
             }
         } catch (InputMismatchException inputMismatchException) {
@@ -205,7 +211,7 @@ public class LinkedListBlockingQueue implements BlockingQueue {
             System.out.print("Linked list blocking queue: ");
             while (iterator.hasNext()) {
                 System.out.print(iterator.next());
-                System.out.print(",");
+                System.out.print(", ");
             }
         }
         System.out.println();
@@ -219,8 +225,8 @@ public class LinkedListBlockingQueue implements BlockingQueue {
                     System.out.print("Input an element(String) to remove: ");
                     String element = scanner.next();
                     if (blockingQueue.contains(element)) {
-                        boolean isSuccess = blockingQueue.remove(element);
-                        if (isSuccess) {
+                        boolean isRemoved = blockingQueue.remove(element);
+                        if (isRemoved) {
                             System.out.println("Element is removed successfully.");
                         } else {
                             System.out.println("Fail.");
@@ -229,7 +235,7 @@ public class LinkedListBlockingQueue implements BlockingQueue {
                 }
             }
         } catch (InputMismatchException inputMismatchException) {
-            System.out.print("Exception: " + "wrong type");
+            System.out.print("Exception: " + "Input wrong type.");
         } catch (Exception exception) {
             System.out.print("Exception: " + exception.getMessage());
         }
@@ -277,7 +283,7 @@ public class LinkedListBlockingQueue implements BlockingQueue {
                 blockingQueue.put(element);
             }
         } catch (InputMismatchException inputMismatchException) {
-            System.out.print("Exception: " + inputMismatchException.getMessage());
+            System.out.print("Exception: " + "Input wrong type.");
         } catch (Exception ex) {
             System.out.print("Exception: " + ex.getMessage());
         }

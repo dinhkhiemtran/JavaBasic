@@ -89,7 +89,10 @@ public class HashSet implements Set {
                 while (!isFull(hashSet)) {
                     System.out.print("Add elements(String): ");
                     String element = scanner.next();
-                    hashSet.add(element);
+                   boolean isSuccess = hashSet.add(element);
+                   if (isSuccess){
+                       System.out.println("Element is added successfully.");
+                   }
                 }
             }
         } catch (InputMismatchException inputMismatchException) {
@@ -108,7 +111,10 @@ public class HashSet implements Set {
                 while (!isFull(hashSet)) {
                     System.out.print("Add elements(Integer): ");
                     Integer element = scanner.nextInt();
-                    hashSet.add(element);
+                    boolean isSuccess = hashSet.add(element);
+                    if (isSuccess){
+                        System.out.println("Element is added successfully.");
+                    }
                 }
             }
         } catch (InputMismatchException inputMismatchException) {
@@ -127,8 +133,8 @@ public class HashSet implements Set {
                     System.out.print("Input an element(String) to remove: ");
                     String element = scanner.next();
                     if (hashSet.contains(element)) {
-                        boolean isSuccess = hashSet.remove(element);
-                        if (isSuccess) {
+                        boolean isRemoved = hashSet.remove(element);
+                        if (isRemoved) {
                             System.out.println("Element is removed successfully.");
                         } else {
                             System.out.println("Fail.");
@@ -152,8 +158,8 @@ public class HashSet implements Set {
                     System.out.println("Input an element(Integer) to remove: ");
                     Integer element = scanner.nextInt();
                     if (hashSet.contains(element)) {
-                        boolean isSuccess = hashSet.remove(element);
-                        if (isSuccess) {
+                        boolean isRemoved = hashSet.remove(element);
+                        if (isRemoved) {
                             System.out.println("Element is removed successfully.");
                         } else {
                             System.out.println("Fail.");

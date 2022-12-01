@@ -123,7 +123,12 @@ public class PriorityQueue implements Queue {
                 while (!isFull(priorityQueue)) {
                     System.out.print("Add elements(Integer): ");
                     Integer elements = scanner.nextInt();
-                    priorityQueue.offer(elements);
+                    boolean isSuccess = priorityQueue.offer(elements);
+                    if (isSuccess) {
+                        System.out.println("Element is offered successfully.");
+                    }else {
+                        System.out.println("Fail.");
+                    }
                 }
             }
         } catch (InputMismatchException inputMismatchException) {
@@ -142,7 +147,12 @@ public class PriorityQueue implements Queue {
                 while (!isFull(priorityQueue)) {
                     System.out.print("Add elements(String): ");
                     String element = scanner.next();
-                    priorityQueue.add(element);
+                    boolean isSuccess = priorityQueue.add(element);
+                    if (isSuccess) {
+                        System.out.println("Element is added successfully.");
+                    }else {
+                        System.out.println("Fail.");
+                    }
                 }
             }
         } catch (InputMismatchException inputMismatchException) {
@@ -171,11 +181,11 @@ public class PriorityQueue implements Queue {
                     System.out.print("Input an element to remove(String): ");
                     String element = scanner.next();
                     if (priorityQueue.contains(element)) {
-                        boolean isSuccess = priorityQueue.remove(element);
-                        if (isSuccess) {
+                        boolean isRemoved = priorityQueue.remove(element);
+                        if (isRemoved) {
                             System.out.println("Element is removed successfully.");
                         } else {
-                            System.out.println("Fail.");
+                            System.out.println("Can not remove.");
                         }
                     }
                 }
@@ -192,8 +202,8 @@ public class PriorityQueue implements Queue {
         try {
             if (priorityQueue != null) {
                 if (!priorityQueue.isEmpty()) {
-                    T result = priorityQueue.poll();
-                    System.out.println("Element is polled: " + result);
+                    T element = priorityQueue.poll();
+                    System.out.println("Element is polled: " + element);
                 }
             }
         } catch (InputMismatchException inputMismatchException) {

@@ -240,8 +240,8 @@ public class LinkedList implements Deque {
                     System.out.print("Input an element(String) to remove: ");
                     String element = scanner.next();
                     if (linkedList.contains(element)) {
-                        boolean isSuccess = linkedList.remove(element);
-                        if (isSuccess) {
+                        boolean isRemoved = linkedList.remove(element);
+                        if (isRemoved) {
                             System.out.println("Element is removed successfully.");
                         } else {
                             System.out.println("Fail.");
@@ -265,8 +265,8 @@ public class LinkedList implements Deque {
                     System.out.print("Input  an element(Integer) to remove: ");
                     Integer element = scanner.nextInt();
                     if (linkedList.contains(element)) {
-                        boolean isSuccess = linkedList.remove(element);
-                        if (isSuccess) {
+                        boolean isRemoved = linkedList.remove(element);
+                        if (isRemoved) {
                             System.out.println("Element is removed successfully.");
                         } else {
                             System.out.println("Fail.");
