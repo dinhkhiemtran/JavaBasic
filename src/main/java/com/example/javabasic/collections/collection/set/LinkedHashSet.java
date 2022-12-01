@@ -73,166 +73,195 @@ public class LinkedHashSet implements Set {
         return new Object[0];
     }
 
-    public <T> java.util.LinkedHashSet<T> createLinkedHashSet(){
+    public <T> java.util.LinkedHashSet<T> createLinkedHashSet() {
         java.util.LinkedHashSet<T> linkedHashSet = new java.util.LinkedHashSet<>(CAPACITY, loadFactor);
         return linkedHashSet;
     }
 
-    public <T> boolean isFull(java.util.LinkedHashSet<T> linkedHashSet){
+    public <T> boolean isFull(java.util.LinkedHashSet<T> linkedHashSet) {
         return linkedHashSet.size() >= CAPACITY;
     }
 
-    public java.util.LinkedHashSet<String> addElementsToLinkedHashSetOriginString(){
-        java.util.LinkedHashSet<String> origin = new java.util.LinkedHashSet<>();
-        origin.add("Java");
-        origin.add("Go");
-        origin.add("Php");
-        origin.add("C#");
-        origin.add("C++");
-        origin.add("C");
-        return origin;
-    }
-
-    public java.util.LinkedHashSet<Integer> addElementsToLinkedHashSetOriginInteger(){
-        java.util.LinkedHashSet<Integer> origin = new java.util.LinkedHashSet<>();
-        for(int i = 10; i <= 20; i++){
-            origin.add(i);
-        }
-        return origin;
-    }
-
-    public java.util.LinkedHashSet<String> insertElementsToLinkedHashSetString(){
+    public java.util.LinkedHashSet<String> addElementsString() {
         Scanner scanner = new Scanner(System.in);
         java.util.LinkedHashSet<String> linkedHashSet = createLinkedHashSet();
-        try{
-            if(linkedHashSet != null){
-                while (!isFull(linkedHashSet)){
-                    System.out.print("Insert element to linked hash set string: ");
+        try {
+            if (linkedHashSet != null) {
+                while (!isFull(linkedHashSet)) {
+                    System.out.print("Add elements(String): ");
                     String element = scanner.next();
                     linkedHashSet.add(element);
                 }
             }
-        }catch (InputMismatchException inputMismatchException){
-            System.out.print("Exception: " + "Wrong type.");
-        }catch (Exception ex){
+        } catch (InputMismatchException inputMismatchException) {
+            System.out.print("Exception: " + "Input wrong type.");
+        } catch (Exception ex) {
             System.out.print("Exception: " + ex.getMessage());
         }
         return linkedHashSet;
     }
 
-    public java.util.LinkedHashSet<Integer> insertElementsToLinkedHashSetInteger(){
+    public java.util.LinkedHashSet<Integer> addElementsInteger() {
         Scanner scanner = new Scanner(System.in);
         java.util.LinkedHashSet<Integer> linkedHashSet = createLinkedHashSet();
-        try{
-            if(linkedHashSet != null){
-                while (!isFull(linkedHashSet)){
-                    System.out.print("Insert element to linked hash set integer: ");
+        try {
+            if (linkedHashSet != null) {
+                while (!isFull(linkedHashSet)) {
+                    System.out.print("Add elements(Integer): ");
                     Integer element = scanner.nextInt();
                     linkedHashSet.add(element);
                 }
             }
-        }catch (InputMismatchException inputMismatchException){
-            System.out.print("Exception: " + "Wrong type.");
-        }catch (Exception ex){
+        } catch (InputMismatchException inputMismatchException) {
+            System.out.print("Exception: " + "Input wrong type.");
+        } catch (Exception ex) {
             System.out.print("Exception: " + ex.getMessage());
         }
         return linkedHashSet;
     }
 
-    public <T> void accessLinkedHashSetElements(java.util.LinkedHashSet<T> linkedHashSet){
-        Iterator<T> iterator = linkedHashSet.iterator();
-        System.out.print("Linked Hash Set: ");
-        while (iterator.hasNext()){
-            System.out.print(iterator.next());
-            System.out.print(",");
+    public <T> void iterator(java.util.LinkedHashSet<T> linkedHashSet) {
+        if (linkedHashSet != null) {
+            Iterator<T> iterator = linkedHashSet.iterator();
+            System.out.print("Linked Hash Set: ");
+            while (iterator.hasNext()) {
+                System.out.print(iterator.next());
+                System.out.println(", ");
+            }
         }
         System.out.println();
     }
 
-    public java.util.LinkedHashSet<String> removeElementFromLinkedHashSetString(){
+    public java.util.LinkedHashSet<String> removeAnElementString(java.util.LinkedHashSet<String> linkedHashSet) {
         Scanner scanner = new Scanner(System.in);
-        java.util.LinkedHashSet<String> linkedHashSet = insertElementsToLinkedHashSetString();
-        try{
-            if(linkedHashSet != null){
-                if(!linkedHashSet.isEmpty()){
-                    System.out.print("Input an element that you want to remove: ");
+        try {
+            if (linkedHashSet != null) {
+                if (!linkedHashSet.isEmpty()) {
+                    System.out.print("Input an element to remove: ");
                     String element = scanner.next();
-                    if(linkedHashSet.contains(element)){
-                        linkedHashSet.remove(element);
-                    }else {
-                        System.out.println("Not Found! ");
+                    if (linkedHashSet.contains(element)) {
+                        boolean isSuccess = linkedHashSet.remove(element);
+                        if (isSuccess) {
+                            System.out.println("Element is removed successfully.");
+                        } else {
+                            System.out.println("Fail.");
+                        }
+                    } else {
+                        System.out.println("Not Found.");
                     }
                 }
             }
-        }catch (InputMismatchException inputMismatchException){
+        } catch (InputMismatchException inputMismatchException) {
             System.out.print("Exception: " + "Wrong type.");
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.print("Exception: " + ex.getMessage());
         }
         return linkedHashSet;
     }
 
-    public java.util.LinkedHashSet<Integer> removeElementFromLinkedHashSetInteger(){
+    public java.util.LinkedHashSet<Integer> removeAnElementInteger(java.util.LinkedHashSet<Integer> linkedHashSet) {
         Scanner scanner = new Scanner(System.in);
-        java.util.LinkedHashSet<Integer> linkedHashSet = insertElementsToLinkedHashSetInteger();
-        try{
-            if(linkedHashSet != null){
-                if(!linkedHashSet.isEmpty()){
-                    System.out.print("Input an element that you want to remove: ");
+        try {
+            if (linkedHashSet != null) {
+                if (!linkedHashSet.isEmpty()) {
+                    System.out.print("Input an element to remove: ");
                     Integer element = scanner.nextInt();
-                    if(linkedHashSet.contains(element)){
-                        linkedHashSet.remove(element);
-                    }else {
+                    if (linkedHashSet.contains(element)) {
+                        boolean isSuccess = linkedHashSet.remove(element);
+                        if (isSuccess) {
+                            System.out.println("Element is removed successfully.");
+                        } else {
+                            System.out.println("Fail.");
+                        }
+                    } else {
                         System.out.println("Not Found! ");
                     }
                 }
             }
-        }catch (InputMismatchException inputMismatchException){
+        } catch (InputMismatchException inputMismatchException) {
             System.out.print("Exception: " + "Wrong type.");
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.print("Exception: " + ex.getMessage());
         }
         return linkedHashSet;
     }
 
-    public <T> java.util.LinkedHashSet<T> unionLinkedHashSet(java.util.LinkedHashSet<T> set1, java.util.LinkedHashSet<T> set2){
-        set1.addAll(set2);
+    public <T> java.util.LinkedHashSet<T> union(java.util.LinkedHashSet<T> set1, java.util.LinkedHashSet<T> set2) {
+        if (set1 != null && set2 != null) {
+            boolean isSuccess = set1.addAll(set2);
+            if (isSuccess) {
+                System.out.print("Union: ");
+            } else {
+                System.out.println("Non-Union.");
+            }
+        }
         return set1;
     }
 
-    public <T>java.util.LinkedHashSet<T> intersectionLinkedHashSet(java.util.LinkedHashSet<T> set1, java.util.LinkedHashSet<T> set2){
-        set1.retainAll(set2);
+    public <T> java.util.LinkedHashSet<T> intersection(java.util.LinkedHashSet<T> set1, java.util.LinkedHashSet<T> set2) {
+        if (set1 != null && set2 != null) {
+            boolean isSuccess = set1.retainAll(set2);
+            if (isSuccess) {
+                System.out.print("Intersection: ");
+            } else {
+                System.out.println("Non-Intersection.");
+            }
+        }
         return set1;
     }
 
-    public <T>java.util.LinkedHashSet<T> differenceLinkedHashSet(java.util.LinkedHashSet<T> set1, java.util.LinkedHashSet<T> set2){
-        set1.removeAll(set2);
+    public <T> java.util.LinkedHashSet<T> difference(java.util.LinkedHashSet<T> set1, java.util.LinkedHashSet<T> set2) {
+        if (set1 != null && set2 != null) {
+            boolean isSuccess = set1.removeAll(set2);
+            if (isSuccess) {
+                System.out.print("Difference: ");
+            } else {
+                System.out.println("Non-Difference");
+            }
+        }
         return set1;
     }
 
-    public <T> boolean subSetLinkedHashSet(java.util.LinkedHashSet<T> set1, java.util.LinkedHashSet<T> set2){
+    public <T> boolean subSet(java.util.LinkedHashSet<T> set1, java.util.LinkedHashSet<T> set2) {
         return set1.containsAll(set2);
     }
 
-    private void load(){
-        System.out.println(insertElementsToLinkedHashSetString());
-        System.out.println(insertElementsToLinkedHashSetInteger());
-        System.out.println(removeElementFromLinkedHashSetString());
-        System.out.println(removeElementFromLinkedHashSetInteger());
-        accessLinkedHashSetElements(addElementsToLinkedHashSetOriginString());
-        accessLinkedHashSetElements(addElementsToLinkedHashSetOriginInteger());
-        System.out.println("Union: " + unionLinkedHashSet(addElementsToLinkedHashSetOriginString(), insertElementsToLinkedHashSetString()));
-        System.out.println("Union: " + unionLinkedHashSet(addElementsToLinkedHashSetOriginInteger(), insertElementsToLinkedHashSetInteger()));
-        System.out.println("Intersection: " + intersectionLinkedHashSet(addElementsToLinkedHashSetOriginString(), insertElementsToLinkedHashSetString()));
-        System.out.println("Intersection: " + intersectionLinkedHashSet(addElementsToLinkedHashSetOriginInteger(), insertElementsToLinkedHashSetInteger()));
-        System.out.println("Difference: " + differenceLinkedHashSet(addElementsToLinkedHashSetOriginString(), insertElementsToLinkedHashSetString()));
-        System.out.println("Difference: " + differenceLinkedHashSet(addElementsToLinkedHashSetOriginInteger(), insertElementsToLinkedHashSetInteger()));
-        System.out.println(subSetLinkedHashSet(addElementsToLinkedHashSetOriginString(), insertElementsToLinkedHashSetString()));
-        System.out.println(subSetLinkedHashSet(addElementsToLinkedHashSetOriginInteger(), insertElementsToLinkedHashSetInteger()));
+    public <T> void print(java.util.LinkedHashSet<T> linkedHashSet) {
+        if (linkedHashSet != null) {
+            System.out.print("Linked Hash Set: ");
+            linkedHashSet.forEach(elements -> System.out.print(elements + ", "));
+            System.out.println();
+        }
+    }
+
+    public void loadLinkedHashSetString() {
+        java.util.LinkedHashSet<String> set1 = addElementsString();
+        print(set1);
+        java.util.LinkedHashSet<String> set2 = addElementsString();
+        print(set2);
+        System.out.println(union(set1, set2));
+        System.out.println(intersection(set1, set2));
+        System.out.println(difference(set1, set2));
+        System.out.println(subSet(set1, set2));
+        System.out.println(removeAnElementString(set1));
+
+    }
+
+    public void loadLinkedHashSetInteger() {
+        java.util.LinkedHashSet<Integer> set1 = addElementsInteger();
+        print(set1);
+        java.util.LinkedHashSet<Integer> set2 = addElementsInteger();
+        print(set2);
+        System.out.println(union(set1, set2));
+        System.out.println(intersection(set1, set2));
+        System.out.println(difference(set1, set2));
+        System.out.println(subSet(set1, set2));
+        System.out.println(removeAnElementInteger(set1));
     }
 
     public static void main(String[] args) {
         LinkedHashSet linkedHashSet = new LinkedHashSet();
-        linkedHashSet.load();
+        linkedHashSet.loadLinkedHashSetString();
+        linkedHashSet.loadLinkedHashSetInteger();
     }
 }

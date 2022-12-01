@@ -299,23 +299,27 @@ public class LinkedList implements Deque {
         }
     }
 
-    public void load() {
+    public void loadLinkedListString() {
         java.util.LinkedList<String> linkedListString = addElementsToLinkedListString();
-        java.util.LinkedList<Integer> linkedListInteger = addElementsToLinkedListInteger();
         print(linkedListString);
-        print(linkedListInteger);
         System.out.println(accessAFirstElement(linkedListString));
-        System.out.println(accessAFirstElement(linkedListInteger));
         System.out.println(accessALastElement(linkedListString));
-        System.out.println(accessALastElement(linkedListInteger));
         System.out.println(removeAnElementSpecifiedString(linkedListString));
-        System.out.println(removeAnElementSpecifiedInteger(linkedListInteger));
         System.out.println(removeAllElements(linkedListString));
+    }
+
+    public void loadLinkedListInteger() {
+        java.util.LinkedList<Integer> linkedListInteger = addElementsToLinkedListInteger();
+        print(linkedListInteger);
+        System.out.println(accessAFirstElement(linkedListInteger));
+        System.out.println(accessALastElement(linkedListInteger));
+        System.out.println(removeAnElementSpecifiedInteger(linkedListInteger));
         System.out.println(removeAllElements(linkedListInteger));
     }
 
     public static void main(String[] args) {
         LinkedList deque = new LinkedList();
-        deque.load();
+        deque.loadLinkedListString();
+        deque.loadLinkedListInteger();
     }
 }

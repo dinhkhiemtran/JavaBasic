@@ -289,35 +289,39 @@ public class ArrayBlockingQueue implements BlockingQueue {
         return blockingQueue;
     }
 
-    public void load() {
+    public void loadBlockingQueueString() {
         BlockingQueue<String> blockingQueueString = addElementsString();
-        BlockingQueue<Integer> blockingQueueInteger = addElementsInteger();
         BlockingQueue<String> blockingQueuePutString = putAnElementString();
-        BlockingQueue<Integer> blockingQueuePutInteger = putAnElementInteger();
         print(blockingQueueString);
-        print(blockingQueueInteger);
         print(blockingQueuePutString);
-        print(blockingQueuePutInteger);
         System.out.println(accessAPeekElement(blockingQueueString));
-        System.out.println(accessAPeekElement(blockingQueueInteger));
         System.out.println(accessAPeekElement(blockingQueuePutString));
-        System.out.println(accessAPeekElement(blockingQueuePutInteger));
         System.out.println(removeAnElement(blockingQueueString));
-        System.out.println(removeAnElement(blockingQueueInteger));
         System.out.println(removeAnElement(blockingQueuePutString));
-        System.out.println(removeAnElement(blockingQueuePutInteger));
         System.out.println(takeAnElement(blockingQueueString));
-        System.out.println(takeAnElement(blockingQueueInteger));
         System.out.println(takeAnElement(blockingQueuePutString));
-        System.out.println(takeAnElement(blockingQueuePutInteger));
         System.out.println(removeAllElements(blockingQueueString));
-        System.out.println(removeAllElements(blockingQueueInteger));
         System.out.println(removeAllElements(blockingQueuePutString));
+    }
+
+    public void loadBlockingQueueInteger() {
+        BlockingQueue<Integer> blockingQueueInteger = addElementsInteger();
+        BlockingQueue<Integer> blockingQueuePutInteger = putAnElementInteger();
+        print(blockingQueueInteger);
+        print(blockingQueuePutInteger);
+        System.out.println(accessAPeekElement(blockingQueueInteger));
+        System.out.println(accessAPeekElement(blockingQueuePutInteger));
+        System.out.println(removeAnElement(blockingQueueInteger));
+        System.out.println(removeAnElement(blockingQueuePutInteger));
+        System.out.println(takeAnElement(blockingQueueInteger));
+        System.out.println(takeAnElement(blockingQueuePutInteger));
+        System.out.println(removeAllElements(blockingQueueInteger));
         System.out.println(removeAllElements(blockingQueuePutInteger));
     }
 
     public static void main(String[] args) {
         ArrayBlockingQueue arrayBlockingQueue = new ArrayBlockingQueue();
-        arrayBlockingQueue.load();
+        arrayBlockingQueue.loadBlockingQueueString();
+        arrayBlockingQueue.loadBlockingQueueInteger();
     }
 }

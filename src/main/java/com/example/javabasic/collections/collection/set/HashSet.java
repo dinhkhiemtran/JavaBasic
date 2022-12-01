@@ -169,14 +169,14 @@ public class HashSet implements Set {
         return hashSet;
     }
 
-    public <T> java.util.HashSet<T> unionSet(java.util.HashSet<T> set1, java.util.HashSet<T> set2) {
+    public <T> java.util.HashSet<T> union(java.util.HashSet<T> set1, java.util.HashSet<T> set2) {
         try {
             if (set1 != null && set2 != null) {
-                boolean isSuccess = set1.addAll(set2);
-                if (isSuccess) {
+                boolean isUnion = set1.addAll(set2);
+                if (isUnion) {
                     System.out.print("Union: ");
                 } else {
-                    System.out.println("Fail.");
+                    System.out.println("Non-Union.");
                 }
             }
         } catch (Exception exception) {
@@ -185,14 +185,14 @@ public class HashSet implements Set {
         return set1;
     }
 
-    public <T> java.util.HashSet<T> intersectionSet(java.util.HashSet<T> set1, java.util.HashSet<T> set2) {
+    public <T> java.util.HashSet<T> intersection(java.util.HashSet<T> set1, java.util.HashSet<T> set2) {
         try {
             if (set1 != null && set2 != null) {
-                boolean isSuccess = set1.retainAll(set2);
-                if (isSuccess) {
+                boolean isIntersection = set1.retainAll(set2);
+                if (isIntersection) {
                     System.out.print("Intersection: ");
                 } else {
-                    System.out.println("Fail.");
+                    System.out.println("Non-Intersection.");
                 }
             }
         } catch (Exception exception) {
@@ -201,14 +201,14 @@ public class HashSet implements Set {
         return set1;
     }
 
-    public <T> java.util.HashSet<T> differenceSet(java.util.HashSet<T> set1, java.util.HashSet<T> set2) {
+    public <T> java.util.HashSet<T> difference(java.util.HashSet<T> set1, java.util.HashSet<T> set2) {
         try {
             if (set1 != null && set2 != null) {
-                boolean isSuccess = set2.removeAll(set1);
-                if (isSuccess) {
+                boolean isDifference = set2.removeAll(set1);
+                if (isDifference) {
                     System.out.print("Difference: ");
                 } else {
-                    System.out.println("Fail.");
+                    System.out.println("Non-Difference.");
                 }
             }
         } catch (Exception ex) {
@@ -225,8 +225,8 @@ public class HashSet implements Set {
         return isExist;
     }
 
-    public <T>java.util.HashSet<T> removeAllElements(java.util.HashSet<T> hashSet){
-        if (hashSet != null){
+    public <T> java.util.HashSet<T> removeAllElements(java.util.HashSet<T> hashSet) {
+        if (hashSet != null) {
             hashSet.clear();
         }
         return hashSet;
@@ -244,35 +244,39 @@ public class HashSet implements Set {
         System.out.println();
     }
 
-    public void load() {
+    public void loadHashSetString() {
         java.util.HashSet<String> set1String = addElementsString();
         print(set1String);
         java.util.HashSet<String> set2String = addElementsString();
         print(set2String);
         System.out.println(subSet(set1String, set2String));
-        System.out.println(unionSet(set1String, set2String));
-        System.out.println(intersectionSet(set1String, set2String));
-        System.out.println(differenceSet(set1String, set2String));
+        System.out.println(union(set1String, set2String));
+        System.out.println(intersection(set1String, set2String));
+        System.out.println(difference(set1String, set2String));
+        System.out.println(removeAnElementSpecifiedString(set1String));
+        System.out.println(removeAnElementSpecifiedString(set2String));
+        System.out.println(removeAllElements(set1String));
+        System.out.println(removeAllElements(set2String));
+    }
+
+    public void loadHashSetInteger() {
         java.util.HashSet<Integer> set1Integer = addElementsInteger();
         print(set1Integer);
         java.util.HashSet<Integer> set2Integer = addElementsInteger();
         print(set2Integer);
         System.out.println(subSet(set1Integer, set2Integer));
-        System.out.println(unionSet(set1Integer, set2Integer));
-        System.out.println(intersectionSet(set1Integer, set2Integer));
-        System.out.println(differenceSet(set1Integer, set2Integer));
-        System.out.println(removeAnElementSpecifiedString(set1String));
-        System.out.println(removeAnElementSpecifiedString(set2String));
+        System.out.println(union(set1Integer, set2Integer));
+        System.out.println(intersection(set1Integer, set2Integer));
+        System.out.println(difference(set1Integer, set2Integer));
         System.out.println(removeAnElementSpecifiedInteger(set1Integer));
         System.out.println(removeAnElementSpecifiedInteger(set2Integer));
-        System.out.println(removeAllElements(set1String));
-        System.out.println(removeAllElements(set2String));
         System.out.println(removeAllElements(set1Integer));
         System.out.println(removeAllElements(set2Integer));
     }
 
     public static void main(String[] args) {
         HashSet hashSet = new HashSet();
-        hashSet.load();
+        hashSet.loadHashSetString();
+        hashSet.loadHashSetInteger();
     }
 }

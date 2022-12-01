@@ -219,22 +219,26 @@ public class PriorityQueue implements Queue {
         return priorityQueue;
     }
 
-    private void load() {
+    private void loadPriorityQueueString() {
         java.util.PriorityQueue<String> priorityQueueString = addElements();
-        java.util.PriorityQueue<Integer> priorityQueueInteger = offerElementsInteger();
         print(priorityQueueString);
-        print(priorityQueueInteger);
         System.out.println(getHeadOfElement(priorityQueueString));
-        System.out.println(getHeadOfElement(priorityQueueInteger));
         System.out.println(removeAnElement(priorityQueueString));
-        System.out.println(pollAnElement(priorityQueueInteger));
         System.out.println(removeAllElements(priorityQueueString));
+    }
+
+    private void loadPriorityQueueInteger() {
+        java.util.PriorityQueue<Integer> priorityQueueInteger = offerElementsInteger();
+        print(priorityQueueInteger);
+        System.out.println(getHeadOfElement(priorityQueueInteger));
+        System.out.println(pollAnElement(priorityQueueInteger));
         System.out.println(removeAllElements(priorityQueueInteger));
     }
 
     public static void main(String[] args) {
         PriorityQueue priorityQueue = new PriorityQueue();
-        priorityQueue.load();
+        priorityQueue.loadPriorityQueueString();
+        priorityQueue.loadPriorityQueueInteger();
     }
 }
 

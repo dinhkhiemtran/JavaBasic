@@ -311,31 +311,35 @@ public class LinkedListBlockingQueue implements BlockingQueue {
         return blockingQueue;
     }
 
-    public void load() {
+    public void loadBlockingQueueString() {
         BlockingQueue<String> blockingQueueString = addElements();
-        BlockingQueue<Integer> blockingQueueInteger = offerElements();
         BlockingQueue<String> blockingQueuePutString = putElementsString();
-        BlockingQueue<Integer> blockingQueuePutInteger = putElementsInteger();
         iterator(blockingQueueString);
-        iterator(blockingQueueInteger);
         iterator(blockingQueuePutString);
-        iterator(blockingQueuePutInteger);
         System.out.println(peekAnElement(blockingQueueString));
-        System.out.println(peekAnElement(blockingQueueInteger));
         System.out.println(peekAnElement(blockingQueuePutString));
-        System.out.println(peekAnElement(blockingQueuePutInteger));
         System.out.println(removeAnElementSpecifiedString(blockingQueueString));
-        System.out.println(pollAnElementInteger(blockingQueueInteger));
         System.out.println(takeAnElement(blockingQueueString));
-        System.out.println(takeAnElement(blockingQueueInteger));
         System.out.println(removeAllElements(blockingQueueString));
-        System.out.println(removeAllElements(blockingQueueInteger));
         System.out.println(removeAllElements(blockingQueuePutString));
+    }
+
+    public void loadBlockingQueueInteger() {
+        BlockingQueue<Integer> blockingQueueInteger = offerElements();
+        BlockingQueue<Integer> blockingQueuePutInteger = putElementsInteger();
+        iterator(blockingQueueInteger);
+        iterator(blockingQueuePutInteger);
+        System.out.println(peekAnElement(blockingQueueInteger));
+        System.out.println(peekAnElement(blockingQueuePutInteger));
+        System.out.println(pollAnElementInteger(blockingQueueInteger));
+        System.out.println(takeAnElement(blockingQueueInteger));
+        System.out.println(removeAllElements(blockingQueueInteger));
         System.out.println(removeAllElements(blockingQueuePutInteger));
     }
 
     public static void main(String[] args) {
         LinkedListBlockingQueue blockingQueue = new LinkedListBlockingQueue();
-        blockingQueue.load();
+        blockingQueue.loadBlockingQueueString();
+        blockingQueue.loadBlockingQueueInteger();
     }
 }
