@@ -240,8 +240,8 @@ public class LinkedList implements Deque {
                     System.out.print("Input an element(String) to remove: ");
                     String element = scanner.next();
                     if (linkedList.contains(element)) {
-                        boolean isSuccess = linkedList.remove(element);
-                        if (isSuccess) {
+                        boolean isRemoved = linkedList.remove(element);
+                        if (isRemoved) {
                             System.out.println("Element is removed successfully.");
                         } else {
                             System.out.println("Fail.");
@@ -265,8 +265,8 @@ public class LinkedList implements Deque {
                     System.out.print("Input  an element(Integer) to remove: ");
                     Integer element = scanner.nextInt();
                     if (linkedList.contains(element)) {
-                        boolean isSuccess = linkedList.remove(element);
-                        if (isSuccess) {
+                        boolean isRemoved = linkedList.remove(element);
+                        if (isRemoved) {
                             System.out.println("Element is removed successfully.");
                         } else {
                             System.out.println("Fail.");
@@ -299,23 +299,27 @@ public class LinkedList implements Deque {
         }
     }
 
-    public void load() {
+    public void loadLinkedListString() {
         java.util.LinkedList<String> linkedListString = addElementsToLinkedListString();
-        java.util.LinkedList<Integer> linkedListInteger = addElementsToLinkedListInteger();
         print(linkedListString);
-        print(linkedListInteger);
         System.out.println(accessAFirstElement(linkedListString));
-        System.out.println(accessAFirstElement(linkedListInteger));
         System.out.println(accessALastElement(linkedListString));
-        System.out.println(accessALastElement(linkedListInteger));
         System.out.println(removeAnElementSpecifiedString(linkedListString));
-        System.out.println(removeAnElementSpecifiedInteger(linkedListInteger));
         System.out.println(removeAllElements(linkedListString));
+    }
+
+    public void loadLinkedListInteger() {
+        java.util.LinkedList<Integer> linkedListInteger = addElementsToLinkedListInteger();
+        print(linkedListInteger);
+        System.out.println(accessAFirstElement(linkedListInteger));
+        System.out.println(accessALastElement(linkedListInteger));
+        System.out.println(removeAnElementSpecifiedInteger(linkedListInteger));
         System.out.println(removeAllElements(linkedListInteger));
     }
 
     public static void main(String[] args) {
         LinkedList deque = new LinkedList();
-        deque.load();
+        deque.loadLinkedListString();
+        deque.loadLinkedListInteger();
     }
 }

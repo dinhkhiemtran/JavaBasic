@@ -154,7 +154,10 @@ public class LinkedListBlockingQueue implements BlockingQueue {
                 while (!isFull(blockingQueue)) {
                     System.out.print("Add elements(String): ");
                     String element = scanner.next();
-                    blockingQueue.add(element);
+                    boolean isSuccess = blockingQueue.add(element);
+                    if (isSuccess){
+                        System.out.println("Element is added successfully.");
+                    }
                 }
             }
         } catch (InputMismatchException inputMismatchException) {
@@ -173,7 +176,10 @@ public class LinkedListBlockingQueue implements BlockingQueue {
                 while (!isFull(integers)) {
                     System.out.print("Add elements(Integer): ");
                     Integer element = scanner.nextInt();
-                    integers.offer(element);
+                    boolean isSuccess = integers.offer(element);
+                    if (isSuccess){
+                        System.out.println("Element is offered successfully.");
+                    }
                 }
             }
         } catch (InputMismatchException inputMismatchException) {
@@ -205,7 +211,7 @@ public class LinkedListBlockingQueue implements BlockingQueue {
             System.out.print("Linked list blocking queue: ");
             while (iterator.hasNext()) {
                 System.out.print(iterator.next());
-                System.out.print(",");
+                System.out.print(", ");
             }
         }
         System.out.println();
@@ -219,8 +225,8 @@ public class LinkedListBlockingQueue implements BlockingQueue {
                     System.out.print("Input an element(String) to remove: ");
                     String element = scanner.next();
                     if (blockingQueue.contains(element)) {
-                        boolean isSuccess = blockingQueue.remove(element);
-                        if (isSuccess) {
+                        boolean isRemoved = blockingQueue.remove(element);
+                        if (isRemoved) {
                             System.out.println("Element is removed successfully.");
                         } else {
                             System.out.println("Fail.");
@@ -229,7 +235,7 @@ public class LinkedListBlockingQueue implements BlockingQueue {
                 }
             }
         } catch (InputMismatchException inputMismatchException) {
-            System.out.print("Exception: " + "wrong type");
+            System.out.print("Exception: " + "Input wrong type.");
         } catch (Exception exception) {
             System.out.print("Exception: " + exception.getMessage());
         }
@@ -277,7 +283,7 @@ public class LinkedListBlockingQueue implements BlockingQueue {
                 blockingQueue.put(element);
             }
         } catch (InputMismatchException inputMismatchException) {
-            System.out.print("Exception: " + inputMismatchException.getMessage());
+            System.out.print("Exception: " + "Input wrong type.");
         } catch (Exception ex) {
             System.out.print("Exception: " + ex.getMessage());
         }
@@ -311,31 +317,35 @@ public class LinkedListBlockingQueue implements BlockingQueue {
         return blockingQueue;
     }
 
-    public void load() {
+    public void loadBlockingQueueString() {
         BlockingQueue<String> blockingQueueString = addElements();
-        BlockingQueue<Integer> blockingQueueInteger = offerElements();
         BlockingQueue<String> blockingQueuePutString = putElementsString();
-        BlockingQueue<Integer> blockingQueuePutInteger = putElementsInteger();
         iterator(blockingQueueString);
-        iterator(blockingQueueInteger);
         iterator(blockingQueuePutString);
-        iterator(blockingQueuePutInteger);
         System.out.println(peekAnElement(blockingQueueString));
-        System.out.println(peekAnElement(blockingQueueInteger));
         System.out.println(peekAnElement(blockingQueuePutString));
-        System.out.println(peekAnElement(blockingQueuePutInteger));
         System.out.println(removeAnElementSpecifiedString(blockingQueueString));
-        System.out.println(pollAnElementInteger(blockingQueueInteger));
         System.out.println(takeAnElement(blockingQueueString));
-        System.out.println(takeAnElement(blockingQueueInteger));
         System.out.println(removeAllElements(blockingQueueString));
-        System.out.println(removeAllElements(blockingQueueInteger));
         System.out.println(removeAllElements(blockingQueuePutString));
+    }
+
+    public void loadBlockingQueueInteger() {
+        BlockingQueue<Integer> blockingQueueInteger = offerElements();
+        BlockingQueue<Integer> blockingQueuePutInteger = putElementsInteger();
+        iterator(blockingQueueInteger);
+        iterator(blockingQueuePutInteger);
+        System.out.println(peekAnElement(blockingQueueInteger));
+        System.out.println(peekAnElement(blockingQueuePutInteger));
+        System.out.println(pollAnElementInteger(blockingQueueInteger));
+        System.out.println(takeAnElement(blockingQueueInteger));
+        System.out.println(removeAllElements(blockingQueueInteger));
         System.out.println(removeAllElements(blockingQueuePutInteger));
     }
 
     public static void main(String[] args) {
         LinkedListBlockingQueue blockingQueue = new LinkedListBlockingQueue();
-        blockingQueue.load();
+        blockingQueue.loadBlockingQueueString();
+        blockingQueue.loadBlockingQueueInteger();
     }
 }

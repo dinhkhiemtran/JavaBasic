@@ -139,7 +139,12 @@ public class Vector implements List {
                 while (!isFull(vector)) {
                     System.out.print("Add elements: ");
                     String element = scanner.next();
-                    vector.add(element);
+                    boolean isSuccess = vector.add(element);
+                    if (isSuccess) {
+                        System.out.println("Element is added successfully.");
+                    }else {
+                        System.out.println("Fail.");
+                    }
                 }
             }
         } catch (InputMismatchException inputMismatchException) {

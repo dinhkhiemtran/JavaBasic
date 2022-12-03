@@ -161,7 +161,8 @@ public class LinkedList implements List {
                     int pos = scanner.nextInt();
                     System.out.print("Input an element to change: ");
                     String element = scanner.next();
-                    linkedList.set(pos, element);
+                    String result = linkedList.set(pos, element);
+                    System.out.println("Element is changed: " + result);
                 }
             }
         } catch (InputMismatchException in) {
