@@ -1,6 +1,8 @@
 package com.example.javabasic.collections.map;
 
 import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class WeakHashMap implements Map {
 
@@ -68,142 +70,170 @@ public class WeakHashMap implements Map {
         return null;
     }
 
-    public <T> Map<T,T> createWeakHashMap(){
-        Map<T,T> weakHashMap = new java.util.WeakHashMap<>(CAPACITY, loadFactor);
+    public <T> java.util.WeakHashMap<T, T> createWeakHashMap() {
+        java.util.WeakHashMap<T, T> weakHashMap = new java.util.WeakHashMap<>(CAPACITY, loadFactor);
         return weakHashMap;
     }
 
-    public <T> boolean isFull(Map<T,T> weakHashMap){
+    public <T> boolean isFull(Map<T, T> weakHashMap) {
         return weakHashMap.size() >= CAPACITY;
     }
 
-    public Map<String, String> insertElementsToWeakHashMap(){
+    public java.util.WeakHashMap<String, String> putElements() {
         Scanner scanner = new Scanner(System.in);
-        Map<String, String> weakHashMap = createWeakHashMap();
-        try{
-            if(weakHashMap != null){
-                while (!isFull(weakHashMap)){
+        java.util.WeakHashMap<String, String> weakHashMap = createWeakHashMap();
+        try {
+            if (weakHashMap != null) {
+                while (!isFull(weakHashMap)) {
                     System.out.print("Insert key(String): ");
-                    String key = scanner.next();;
+                    String key = scanner.next();
+                    ;
                     System.out.print("Insert value(String): ");
                     String value = scanner.next();
-                    weakHashMap.put(key,value);
+                    weakHashMap.put(key, value);
                 }
             }
-        }catch (InputMismatchException inputMismatchException){
+        } catch (InputMismatchException inputMismatchException) {
             System.out.println("Exception: " + "Input wrong type.");
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("Exception: " + ex.getMessage());
         }
         return weakHashMap;
     }
 
-    public Map<String,String> insertElementsToOriginWeakHashMap(){
+    public Map<String, String> insertElementsToOriginWeakHashMap() {
         Map<String, String> weakHashMap = createWeakHashMap();
-        weakHashMap.put("Java","SpringBoot");
-        weakHashMap.put("Javascript","NodeJS");
-        weakHashMap.put("Go","GRPC");
-        weakHashMap.put("Php","Laravel");
-        weakHashMap.put("C#","WPF");
+        weakHashMap.put("Java", "SpringBoot");
+        weakHashMap.put("Javascript", "NodeJS");
+        weakHashMap.put("Go", "GRPC");
+        weakHashMap.put("Php", "Laravel");
+        weakHashMap.put("C#", "WPF");
         return weakHashMap;
     }
 
-    public <T> Collection<T> getAllKeys(Map<T, T> weakHashMap){
-        return weakHashMap.keySet();
+    public <T> Set<T> getAllKeys(Map<T, T> weakHashMap) {
+        Set<T> results = new HashSet<>();
+        if (weakHashMap != null) {
+            if (!weakHashMap.isEmpty()) {
+                results = weakHashMap.keySet();
+                System.out.print("Keys: ");
+            }
+        }
+        return results;
     }
 
-    public <T> Collection<T> getAllValues(Map<T,T> weakHashMap){
-        return weakHashMap.values();
+    public <T> Collection<T> getAllValues(Map<T, T> weakHashMap) {
+        Collection<T> results = new ArrayList<>();
+        if (weakHashMap != null) {
+            if (!weakHashMap.isEmpty()) {
+                results = weakHashMap.values();
+                System.out.print("Values: ");
+            }
+        }
+        return results;
     }
 
-    public <T> Collection<Entry<T,T>> getAllEntries(Map<T,T> weakHashMap){
-        return weakHashMap.entrySet();
+    public <T> Set<Entry<T, T>> getAllEntries(Map<T, T> weakHashMap) {
+        Set<Entry<T, T>> results = new HashSet<>();
+        if (weakHashMap != null) {
+            if (!weakHashMap.isEmpty()) {
+                results = weakHashMap.entrySet();
+                System.out.print("Entries: ");
+            }
+        }
+        return results;
     }
 
-    public <T> void printWeakHashMapUsingFor(Map<T,T> weakHashMap){
+    public <T> void printUsingFor(Map<T, T> weakHashMap) {
         System.out.println("Weak Hash Map: ");
-        for (Map.Entry entry : weakHashMap.entrySet()){
+        for (Map.Entry entry : weakHashMap.entrySet()) {
             System.out.print(entry);
             System.out.print(", ");
         }
         System.out.println();
     }
 
-    public <T> void printWeakHashMapUsingForEach(Map<T,T> weakHashMap){
-       weakHashMap.forEach((k , v) -> System.out.print(k + ":" + v + ", "));
+    public <T> void printUsingForEach(Map<T, T> weakHashMap) {
+        weakHashMap.forEach((k, v) -> System.out.print(k + ":" + v + ", "));
         System.out.println();
     }
 
-    public <T> void printWeakHashMapUsingIterator(Map<T,T> weakHashMap){
+    public <T> void printUsingIterator(Map<T, T> weakHashMap) {
         System.out.print("Weak Hash Map: ");
         Iterator<Map.Entry<T, T>> iterator = weakHashMap.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry<T, T> entry = iterator.next();
-            System.out.print(entry.getKey() + ":" + entry.getValue() + ", ");
+            System.out.print(entry.getKey() + " : " + entry.getValue() + ", ");
         }
         System.out.println();
     }
 
-    public String getAnElement(){
+    public String getAnElementSpecified(java.util.WeakHashMap<String, String> weakHashMap) {
         Scanner scanner = new Scanner(System.in);
-        Map<String, String> weakHashMap = insertElementsToOriginWeakHashMap();
         String value = "";
-        try{
-            if (weakHashMap != null && !weakHashMap.isEmpty()){
-                printWeakHashMapUsingFor(weakHashMap);
-                System.out.print("Input key to get value: ");
-                String key = scanner.next();;
-                if (weakHashMap.containsKey(key)){
-                    value = weakHashMap.get(key);
-                }else {
-                    return "Not Found";
+        try {
+            if (weakHashMap != null) {
+                if (!weakHashMap.isEmpty()) {
+                    System.out.print("Input key to get value: ");
+                    String key = scanner.next();
+                    if (weakHashMap.containsKey(key)) {
+                        value = weakHashMap.get(key);
+                        System.out.print("Value: ");
+                    } else {
+                        return "Not Found";
+                    }
                 }
             }
-        }catch (InputMismatchException inputMismatchException){
+        } catch (InputMismatchException inputMismatchException) {
             System.out.println("Exception: " + "Input wrong type.");
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("Exception: " + ex.getMessage());
         }
         return value;
     }
 
-    public Map<String, String> removeAnElement(){
+    public java.util.WeakHashMap<String, String> removeAnElementSpecified(java.util.WeakHashMap<String, String> weakHashMap) {
         Scanner scanner = new Scanner(System.in);
-        Map<String, String> weakHashMap = insertElementsToOriginWeakHashMap();
-        try{
-            if (weakHashMap != null && !weakHashMap.isEmpty()){
-                printWeakHashMapUsingIterator(weakHashMap);
-                System.out.print("Input key to remove value: ");
-                String key = scanner.next();
-                if (weakHashMap.containsKey(key)){
-                    weakHashMap.remove(key);
-                }else {
-                    System.out.println("Not Found.");
+        try {
+            if (weakHashMap != null && !weakHashMap.isEmpty()) {
+                if (!weakHashMap.isEmpty()) {
+                    System.out.print("Input key to remove value: ");
+                    String key = scanner.next();
+                    if (weakHashMap.containsKey(key)) {
+                        weakHashMap.remove(key);
+                    } else {
+                        System.out.println("Not Found.");
+                    }
                 }
             }
-        }catch (InputMismatchException inputMismatchException){
+        } catch (InputMismatchException inputMismatchException) {
             System.out.println("Exception: " + "Input wrong type.");
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("Exception: " + ex.getMessage());
         }
         return weakHashMap;
     }
 
-    public <T> Map<T,T> removeAllWeakHashMap(Map<T,T> weakHashMap){
-        weakHashMap.clear();
+    public <T> Map<T, T> removeAllElements(Map<T, T> weakHashMap) {
+        if (weakHashMap != null) {
+            if (!weakHashMap.isEmpty()) {
+                weakHashMap.clear();
+            }
+        }
         return weakHashMap;
     }
 
-    public void load(){
-        Map<String, String> weakHashMap = insertElementsToOriginWeakHashMap();
-        System.out.println(insertElementsToWeakHashMap());
-        System.out.println("Keys: " + getAllKeys(weakHashMap));
-        System.out.println("Values: " + getAllValues(weakHashMap));
-        System.out.println("Entries: " + getAllEntries(weakHashMap));
-        System.out.println(getAnElement());
-        printWeakHashMapUsingForEach(weakHashMap);
-        System.out.println(removeAnElement());
-        System.out.println(removeAllWeakHashMap(weakHashMap));
+    public void load() {
+        java.util.WeakHashMap<String, String> weakHashMap = putElements();
+        printUsingFor(weakHashMap);
+        System.out.println(getAllKeys(weakHashMap));
+        printUsingIterator(weakHashMap);
+        System.out.println(getAllValues(weakHashMap));
+        printUsingForEach(weakHashMap);
+        System.out.println(getAllEntries(weakHashMap));
+        System.out.println(getAnElementSpecified(weakHashMap));
+        System.out.println(removeAnElementSpecified(weakHashMap));
+        System.out.println(removeAllElements(weakHashMap));
     }
 
     public static void main(String[] args) {

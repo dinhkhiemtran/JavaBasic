@@ -1,10 +1,11 @@
 package com.example.javabasic.collections.map;
 
 import java.util.*;
+import java.util.HashMap;
 
 public class LinkedHashMap implements Map {
 
-    private static final int CAPACITY = 1;
+    private static final int CAPACITY = 8;
 
     private static final float loadFactor = 0.6f;
 
@@ -68,130 +69,155 @@ public class LinkedHashMap implements Map {
         return null;
     }
 
-    public Map<String,String> createALinkedHashMap(){
-        Map<String, String> linkedHashMap = new java.util.LinkedHashMap<>(CAPACITY, loadFactor);
+    public <T> java.util.LinkedHashMap<T, T> createALinkedHashMap() {
+        java.util.LinkedHashMap<T, T> linkedHashMap = new java.util.LinkedHashMap<>(CAPACITY, loadFactor);
         return linkedHashMap;
     }
 
-    public Map<String,String> insertElementsToLinkedHashMap(){
-        Map<String,String> linkedHashMap = new java.util.LinkedHashMap<>();
-        linkedHashMap.put("Java","SpringBoot");
+    public Map<String, String> insertElementsToLinkedHashMap() {
+        Map<String, String> linkedHashMap = new java.util.LinkedHashMap<>();
+        linkedHashMap.put("Java", "SpringBoot");
         linkedHashMap.put("Javascript", "Nodejs");
         linkedHashMap.put("Go", "GRPC");
         linkedHashMap.put("C#", "WPF");
-        linkedHashMap.put("Ruby","Rails");
+        linkedHashMap.put("Ruby", "Rails");
         return linkedHashMap;
     }
 
-    public boolean isFull(Map<String, String> linkedHashMap){
+    public <T> boolean isFull(Map<T, T> linkedHashMap) {
         return linkedHashMap.size() >= CAPACITY;
     }
 
-    public Map<String, String> inputElementsToLinkedHashMap(){
+    public java.util.LinkedHashMap<String, String> putElements() {
         Scanner scanner = new Scanner(System.in);
-        Map<String,String> linkedHashMap = createALinkedHashMap();
-        try{
-            if (linkedHashMap != null){
-                while (!isFull(linkedHashMap)){
-                    System.out.print("Input a key: ");
+        java.util.LinkedHashMap<String, String> linkedHashMap = createALinkedHashMap();
+        try {
+            if (linkedHashMap != null) {
+                while (!isFull(linkedHashMap)) {
+                    System.out.print("Input a key(String): ");
                     String key = scanner.next();
-                    System.out.print("Input a value: ");
+                    System.out.print("Input a value(String): ");
                     String value = scanner.next();
-                    linkedHashMap.put(key,value);
+                    linkedHashMap.put(key, value);
                 }
             }
-        }catch (InputMismatchException inputMismatchException){
+        } catch (InputMismatchException inputMismatchException) {
             System.out.println("Exception: " + "Input wrong type.");
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("Exception: " + ex.getMessage());
         }
         return linkedHashMap;
     }
 
-    public String getAnElement(){
+    public <T> T getAnElement(java.util.LinkedHashMap<T,T> linkedHashMap) {
         Scanner scanner = new Scanner(System.in);
-        Map<String, String> linkedHashMap = insertElementsToLinkedHashMap();
-        String value = "";
-        try{
-            if (linkedHashMap != null){
-                iterateUsingLambda(linkedHashMap);
-                if (!linkedHashMap.isEmpty()){
+        T value = (T) "";
+        try {
+            if (linkedHashMap != null) {
+                if (!linkedHashMap.isEmpty()) {
                     System.out.print("Input key to get value: ");
                     String key = scanner.next();
-                    if (linkedHashMap.containsKey(key)){
+                    if (linkedHashMap.containsKey(key)) {
                         value = linkedHashMap.get(key);
-                    }else {
-                        return null;
+                        System.out.print("Value: ");
                     }
                 }
             }
-        }catch (InputMismatchException inputMismatchException){
+        } catch (InputMismatchException inputMismatchException) {
             System.out.println("Exception: " + "Input wrong type.");
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("Exception: " + ex.getMessage());
         }
         return value;
     }
 
-   public <T> Collection<T> getAllKeys(Map<T,T> linkedHashMap){
-        return linkedHashMap.keySet();
-   }
-
-    public <T> Collection<T> getAllValues(Map<T,T> linkedHashmap){
-        return linkedHashmap.values();
-    }
-
-    public <T> Collection<Entry<T,T>> getAllEntries(Map<T,T> linkedHashMap){
-        return linkedHashMap.entrySet();
-    }
-
-    public <T> void printElementsUsingIterator(Map<T,T> linkedHashMap){
-        System.out.print("Linked Hash Map: ");
-        Iterator<Map.Entry<T, T>> iterator = linkedHashMap.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<T, T> entry = iterator.next();
-            System.out.print(entry.getKey() + ":" + entry.getValue() + ", ");
+    public <T> Set<T> getAllKeys(Map<T, T> linkedHashMap) {
+        Set<T> results = new HashSet<>();
+        if (linkedHashMap != null){
+            if (!linkedHashMap.isEmpty()){
+                results = linkedHashMap.keySet();
+                System.out.print("Key Set: ");
+            }
         }
-        System.out.println();
+        return results;
     }
 
-    public <T> void iterateUsingLambda(Map<T, T> map) {
-        map.forEach((k, v) -> System.out.print((k + ":" + v + ", ")));
-        System.out.println();
+    public <T> Collection<T> getAllValues(Map<T, T> linkedHashmap) {
+        Collection<T> results = new ArrayList<>();
+        if (linkedHashmap != null){
+            if (!linkedHashmap.isEmpty()){
+                results = linkedHashmap.values();
+                System.out.print("Values: ");
+            }
+        }
+        return results;
     }
 
-    public Map<String, String> removeAnElementFromLinkedHashMapSpecified(){
+    public <T> Collection<Entry<T, T>> getAllEntries(Map<T, T> linkedHashMap) {
+        Collection<Entry<T, T>> results = new ArrayList<>();
+        if (linkedHashMap != null){
+            if (!linkedHashMap.isEmpty()){
+                results = linkedHashMap.entrySet();
+                System.out.print("Entry Set: ");
+            }
+        }
+        return results;
+    }
+
+    public <T> void print(Map<T, T> linkedHashMap) {
+        if (linkedHashMap != null){
+            Iterator<Map.Entry<T, T>> iterator = linkedHashMap.entrySet().iterator();
+            System.out.print("Linked Hash Map: ");
+            while (iterator.hasNext()) {
+                Map.Entry<T, T> entry = iterator.next();
+                System.out.print(entry.getKey() + ":" + entry.getValue() + ", ");
+            }
+            System.out.println();
+        }
+    }
+
+
+    public Map<String, String> removeAnElementSpecified(java.util.LinkedHashMap<String, String> linkedHashMap) {
         Scanner scanner = new Scanner(System.in);
-        Map<String, String> linkedHashMap = insertElementsToLinkedHashMap();
-        try{
-            if (linkedHashMap != null){
-                printElementsUsingIterator(linkedHashMap);
-                if (!linkedHashMap.isEmpty()){
-                    System.out.print("Input a key to remove from linked hash map: ");
+        try {
+            if (linkedHashMap != null) {
+                if (!linkedHashMap.isEmpty()) {
+                    System.out.print("Input a key to remove: ");
                     String key = scanner.next();
-                    if (linkedHashMap.containsKey(key)){
+                    if (linkedHashMap.containsKey(key)) {
                         linkedHashMap.remove(key);
-                    }else {
+                    } else {
                         System.out.println("Not Found.");
                     }
                 }
             }
-        }catch (InputMismatchException inputMismatchException){
+        } catch (InputMismatchException inputMismatchException) {
             System.out.println("Exception: " + "Input wrong type.");
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("Exception: " + ex.getMessage());
         }
         return linkedHashMap;
     }
 
-    private void load(){
-        Map<String, String> linkedHashMap = insertElementsToLinkedHashMap();
-        System.out.println(inputElementsToLinkedHashMap());
-        System.out.println("Value is accessed: " + getAnElement());
-        System.out.println("Keys: " + getAllKeys(linkedHashMap));
-        System.out.println("Values: " + getAllValues(linkedHashMap));
-        System.out.println("Entries: " + getAllEntries(linkedHashMap));
-        System.out.println(removeAnElementFromLinkedHashMapSpecified());
+    public <T> java.util.LinkedHashMap<T, T> removeAllElements(java.util.LinkedHashMap<T, T> linkedHashMap){
+        if (linkedHashMap != null){
+            if (!linkedHashMap.isEmpty()){
+                linkedHashMap.clear();
+                System.out.print("All elements are removed successfully. ");
+            }
+        }
+        return linkedHashMap;
+    }
+
+    private void load() {
+        java.util.LinkedHashMap<String, String> linkedHashMap = putElements();
+        print(linkedHashMap);
+        System.out.println(getAnElement(linkedHashMap));
+        System.out.println(getAllValues(linkedHashMap));
+        System.out.println(getAllKeys(linkedHashMap));
+        System.out.println(getAllEntries(linkedHashMap));
+        System.out.println(removeAnElementSpecified(linkedHashMap));
+        System.out.println(removeAllElements(linkedHashMap));
     }
 
     public static void main(String[] args) {
