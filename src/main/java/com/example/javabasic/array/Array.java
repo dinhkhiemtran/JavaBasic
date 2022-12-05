@@ -1,67 +1,107 @@
 package com.example.javabasic.array;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 public class Array {
 
-    public  int[] addElementToArrayInt(){
-        int[] array =  new int[10];
-        for(int i = 1; i < array.length ; i++){
-            array[i] = i;
+    public int[] createAnArrayInt(){
+        Scanner scanner = new Scanner(System.in);
+        int[] array = null;
+        try{
+            System.out.print("Input a capacity: ");
+            int capacity = scanner.nextInt();
+            array = new int[capacity];
+        }catch (InputMismatchException inputMismatchException){
+            System.out.println("Exception: " + "Input wrong type.");
+        }catch (Exception ex){
+            System.out.println("Exception: " + ex.getMessage());
         }
         return array;
     }
 
-    public  String[] addElementToArrayString(){
-        String[] array = new String[5];
-        array[0] = "Java";
-        array[1] = "Javascript";
-        array[2] = "Python";
-        array[3] = "Go";
-        array[4] = "C#";
+    public String[] createAnArrayString(){
+        Scanner scanner = new Scanner(System.in);
+        String[] array = null;
+        try{
+            System.out.print("Input a capacity: ");
+            int capacity = scanner.nextInt();
+            array = new String[capacity];
+        }catch (InputMismatchException inputMismatchException){
+            System.out.println("Exception: " + "Input wrong type.");
+        }catch (Exception ex){
+            System.out.println("Exception: " + ex.getMessage());
+        }
         return array;
     }
 
-    public  void printArrayInt(){
-        int[] array = addElementToArrayInt();
-        System.out.print("Array Int: ");
-        for(Integer index : array){
-            System.out.print(index);
-            System.out.print(",");
+    public int[] addElementsInt(){
+        Scanner scanner = new Scanner(System.in);
+        int[] array = createAnArrayInt();
+        try{
+            for (int i = 0 ; i < array.length; i++){
+                System.out.print("Add elements(int): ");
+                int elements = scanner.nextInt();
+                array[i] = elements;
+            }
+        }catch (InputMismatchException inputMismatchException){
+            System.out.println("Exception: " + "Input wrong type.");
+        }catch (Exception ex){
+            System.out.println("Exception: " + ex.getMessage());
         }
-        System.out.println();
+        return array;
     }
 
-    public  void printArrayString(){
-        String[] array = addElementToArrayString();
-        System.out.print("Array String: ");
-        for(int i = 0 ; i < array.length; i++){
-            System.out.print(array[i]);
-            System.out.print(",");
+    public String[] addElementsString(){
+        Scanner scanner = new Scanner(System.in);
+        String[] array = createAnArrayString();
+        try{
+            for (int i = 0 ; i < array.length; i++){
+                System.out.print("Add elements(String): ");
+                String elements = scanner.next();
+                array[i] = elements;
+            }
+        }catch (InputMismatchException inputMismatchException){
+            System.out.println("Exception: " + "Input wrong type.");
+        }catch (Exception ex){
+            System.out.println("Exception: " + ex.getMessage());
         }
-        System.out.println();
+        return array;
     }
 
-    public  int lengthOfArrayInt(){
-        int[] array = addElementToArrayInt();
-        return array.length;
-    }
-
-    public  int lengthOfArrayString(){
-        String[] array = addElementToArrayString();
-        return array.length;
-    }
-
-    private int[] copyArrays(){
-        int[] array = addElementToArrayInt();
-        int[] arrayCopy = array;
-        return arrayCopy;
-    }
-
-    private int[] usingLoopToCopyArrays(){
-        int[] array = addElementToArrayInt();
-        int[] arrayCopy = new int[10];
-        for(int i = 0 ; i < array.length; i++){
-            array[i] = arrayCopy[i];
+    public void print(int[] array){
+        if (array != null){
+            System.out.print("Array: ");
+            for (int i = 0 ; i < array.length; i++){
+                System.out.print(array[i]);
+                System.out.print(", ");
+            }
+            System.out.println();
         }
-        return arrayCopy;
+    }
+
+    public void printArray(String[] array){
+        if (array != null){
+            System.out.print("Array: ");
+            for (String str : array){
+                System.out.print(str + ", ");
+            }
+            System.out.println();
+        }
+    }
+
+    public void loadArrayInt(){
+        int[] array = addElementsInt();
+        print(array);
+    }
+    public void loadArrayString(){
+        String[] array = addElementsString();
+        printArray(array);
+    }
+
+    public static void main(String[] args) {
+        Array array = new Array();
+        array.loadArrayInt();
+        array.loadArrayString();
     }
 }

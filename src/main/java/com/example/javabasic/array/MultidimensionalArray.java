@@ -1,74 +1,117 @@
 package com.example.javabasic.array;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 public class MultidimensionalArray {
 
-   public int[][] create2DArray(){
-       int[][] array = {
-               {1,2,3},
-               {4,5,6},
-               {7,8,9}
-       };
-       return array;
-   }
+    public int[][] createAMatrixInt2D(){
+        Scanner scanner = new Scanner(System.in);
+        int[][] matrix = null;
+        try{
+            System.out.print("Input a length of a row: ");
+            int row = scanner.nextInt();
+            System.out.print("Input a length of a column: ");
+            int col = scanner.nextInt();
+            matrix = new int[row][col];
+        }catch (InputMismatchException inputMismatchException){
+            System.out.println("Exception: " + "Input wrong type.");
+        }catch (Exception ex){
+            System.out.println("Exception: " + ex.getMessage());
+        }
+        return matrix;
+    }
 
-   public String[][] create2DArrayString(){
-       String[][] array = {
-               {"Java","Javascript","Python"},
-               {"C#","C++","C"},
-               {"Go","PhP","Ruby"}
-       };
-       return array;
-   }
+    public String[][] createAMatrixString2D(){
+        Scanner scanner = new Scanner(System.in);
+        String[][] matrix = null;
+        try{
+            System.out.print("Input a length of a row: ");
+            int row = scanner.nextInt();
+            System.out.print("Input a length of a column: ");
+            int col = scanner.nextInt();
+            matrix = new String[row][col];
+        }catch (InputMismatchException inputMismatchException){
+            System.out.println("Exception: " + "Input wrong type.");
+        }catch (Exception ex){
+            System.out.println("Exception: " + ex.getMessage());
+        }
+        return matrix;
+    }
 
-   public void lengthOfRow(){
-       int[][] array = create2DArray();
-       System.out.println("Length of row 1: " + array[0].length);
-       System.out.println("Length of row 2: " + array[1].length);
-       System.out.println("Length of row 3: " + array[2].length);
-   }
+    public int[][] addElementsInt(){
+        Scanner scanner = new Scanner(System.in);
+        int[][] matrix = createAMatrixInt2D();
+        try{
+            for (int row = 0 ; row < matrix.length; row++){
+                for (int col = 0; col < matrix[row].length; col++){
+                    System.out.print("Row[" + row +"] Column["+ col +"](Int): ");
+                    matrix[row][col] = scanner.nextInt();
+                }
+            }
+        }catch (InputMismatchException inputMismatchException){
+            System.out.println("Exception: " + "Input wrong type.");
+        }catch (Exception ex){
+            System.out.println("Exception: " + ex.getMessage());
+        }
+        return matrix;
+    }
 
-   public void printAllElementsOf2dArrayUsingLoop(){
-       int[][] array = create2DArray();
-       for(int i = 0 ; i < array.length; i++){
-           for(int j = 0 ; j < array[i].length; j++){
-               System.out.print(array[i][j]);
-               System.out.print(",");
-           }
-       }
-       System.out.println();
-   }
+    public String[][] addElementsString(){
+        Scanner scanner = new Scanner(System.in);
+        String[][] matrix = createAMatrixString2D();
+        try{
+            for (int row = 0 ; row < matrix.length; row++){
+                for (int col = 0 ; col < matrix[row].length; col++){
+                    System.out.print("Row[" + row +"] Column["+ col +"](String): ");
+                    matrix[row][col] = scanner.next();
+                }
+            }
+        }catch (InputMismatchException inputMismatchException){
+            System.out.println("Exception: " + "Input wrong type.");
+        }catch (Exception ex){
+            System.out.println("Exception: " + ex.getMessage());
+        }
+        return matrix;
+    }
 
-    public void printAllElementsOf2dStringArrayUsingForEach() {
-        String[][] array = create2DArrayString();
-        for(String[] innerArray : array){
-            for(String data : innerArray){
-                System.out.print(data);
-                System.out.print(",");
+    public void printArray(String[][] matrix){
+        if (matrix != null){
+            System.out.println("Matrix string: ");
+            for (String[] str : matrix){
+                for (String data : str){
+                    System.out.print(data + ", ");
+                }
+                System.out.println();
             }
         }
-        System.out.println();
     }
 
-    public int[][] copy2dArraysUsingLoop(){
-       int[][] array = create2DArray();
-       int[][] copyArray = new int[array.length][];
-       for(int i = 0 ; i < copyArray.length; i++){
-           copyArray[i] = new int[array[i].length];
-           for (int j = 0; j < copyArray[i].length; ++j) {
-               copyArray[i][j] = array[i][j];
-           }
-       }
-       return copyArray;
+    public void print(int[][] matrix){
+        if (matrix != null){
+            System.out.println("Matrix int: ");
+            for (int i = 0; i < matrix.length; i++){
+                for (int j = 0; j < matrix[i].length; j++){
+                    System.out.print(matrix[i][j] + ", ");
+                }
+                System.out.println();
+            }
+        }
     }
 
-    private void load(){
-        lengthOfRow();
-        printAllElementsOf2dArrayUsingLoop();
-        printAllElementsOf2dStringArrayUsingForEach();
+    public void loadMatrixInt(){
+        int[][] matrix = addElementsInt();
+        print(matrix);
+    }
+
+    public void loadMatrixString(){
+        String[][] matrix = addElementsString();
+        printArray(matrix);
     }
 
     public static void main(String[] args) {
         MultidimensionalArray multidimensionalArray = new MultidimensionalArray();
-        multidimensionalArray.load();
+        multidimensionalArray.loadMatrixInt();
+        multidimensionalArray.loadMatrixString();
     }
 }
