@@ -128,7 +128,7 @@ public class Vector implements List {
     }
 
     public <T> boolean isFull(java.util.Vector<T> vector) {
-        return vector.size() >= CAPACITY;
+        return vector.size() == CAPACITY;
     }
 
     public java.util.Vector<String> addElements() {

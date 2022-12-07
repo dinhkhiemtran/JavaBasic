@@ -5,15 +5,21 @@ import java.util.Scanner;
 
 public class MultidimensionalArray {
 
+    private int ROW;
+
+    private int COLUMN;
+
+    private int[][] matrix;
+
     public int[][] createAMatrixInt2D(){
         Scanner scanner = new Scanner(System.in);
-        int[][] matrix = null;
+        this.matrix = null;
         try{
             System.out.print("Input a length of a row: ");
-            int row = scanner.nextInt();
+            this.ROW = scanner.nextInt();
             System.out.print("Input a length of a column: ");
-            int col = scanner.nextInt();
-            matrix = new int[row][col];
+            this.COLUMN = scanner.nextInt();
+            matrix = new int[ROW][COLUMN];
         }catch (InputMismatchException inputMismatchException){
             System.out.println("Exception: " + "Input wrong type.");
         }catch (Exception ex){

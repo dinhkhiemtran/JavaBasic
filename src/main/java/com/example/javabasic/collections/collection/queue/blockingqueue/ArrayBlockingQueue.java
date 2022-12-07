@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ArrayBlockingQueue implements BlockingQueue {
 
-    private static final int CAPACITY = 4;
+    private static final int CAPACITY = 2;
 
     @Override
     public boolean add(Object o) {
@@ -142,7 +142,7 @@ public class ArrayBlockingQueue implements BlockingQueue {
     }
 
     public <T> boolean isFull(BlockingQueue<T> blockingQueue) {
-        return blockingQueue.size() >= CAPACITY;
+        return blockingQueue.size() == CAPACITY;
     }
 
     public BlockingQueue<String> addElementsString() {
@@ -154,11 +154,11 @@ public class ArrayBlockingQueue implements BlockingQueue {
                 String element = scanner.next();
                 boolean isSuccess = blockingQueue.add(element);
                 if (isSuccess){
-                    System.out.println("Element is added successfully.");
+                    System.out.println(element + " has been added successfully.");
                 }
             }
         } catch (InputMismatchException in) {
-            System.out.println("Exception: " + "Wrong type");
+            System.out.println("Exception: " + "Input wrong type.");
         } catch (Exception ex) {
             System.out.println("Exception: " + ex.getMessage());
         }
@@ -174,7 +174,7 @@ public class ArrayBlockingQueue implements BlockingQueue {
                 Integer element = scanner.nextInt();
                 boolean isSuccess = blockingQueue.offer(element);
                 if (isSuccess){
-                    System.out.println("Element is offered successfully.");
+                    System.out.println(element + " has been added successfully.");
                 }
             }
         } catch (InputMismatchException inputMismatchException) {
@@ -191,7 +191,7 @@ public class ArrayBlockingQueue implements BlockingQueue {
             if (blockingQueue != null) {
                 if (!blockingQueue.isEmpty()) {
                     element = blockingQueue.peek();
-                    System.out.print("Peek: ");
+                    System.out.print("Peek -> ");
                 }
             }
         } catch (Exception ex) {
@@ -204,7 +204,7 @@ public class ArrayBlockingQueue implements BlockingQueue {
         try {
             if (blockingQueue != null) {
                 Iterator<T> iterator = blockingQueue.iterator();
-                System.out.print("Blocking Queue");
+                System.out.print("Blocking Queue -> ");
                 while (iterator.hasNext()) {
                     System.out.print(iterator.next());
                     System.out.print(", ");
@@ -221,7 +221,7 @@ public class ArrayBlockingQueue implements BlockingQueue {
             if (blockingQueue != null) {
                 if (!blockingQueue.isEmpty()) {
                     T element = blockingQueue.remove();
-                    System.out.println("An Element is removed: " + element);
+                    System.out.println(element + " has been removed.");
                 }
             }
         } catch (InputMismatchException inputMismatchException) {
@@ -273,7 +273,7 @@ public class ArrayBlockingQueue implements BlockingQueue {
             if (blockingQueue != null) {
                 if (!blockingQueue.isEmpty()) {
                     T element = blockingQueue.take();
-                    System.out.println("An Element is token: " + element);
+                    System.out.println(element + "has been token.");
                 }
             }
         } catch (Exception ex) {

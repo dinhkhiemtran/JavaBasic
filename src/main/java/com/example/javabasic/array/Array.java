@@ -5,13 +5,19 @@ import java.util.Scanner;
 
 public class Array {
 
+    private static Scanner scanner = new Scanner(System.in);
+
+    private int CAPACITY;
+
+    private int[] array;
+
     public int[] createAnArrayInt(){
         Scanner scanner = new Scanner(System.in);
-        int[] array = null;
+        this.array = null;
         try{
             System.out.print("Input a capacity: ");
-            int capacity = scanner.nextInt();
-            array = new int[capacity];
+            this.CAPACITY = scanner.nextInt();
+            array = new int[CAPACITY];
         }catch (InputMismatchException inputMismatchException){
             System.out.println("Exception: " + "Input wrong type.");
         }catch (Exception ex){

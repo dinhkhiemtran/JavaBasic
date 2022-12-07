@@ -4,7 +4,9 @@ import java.util.*;
 
 public class ArrayList implements List {
 
-    private static final int CAPACITY = 8;
+    private static int CAPACITY = 2;
+
+    private static Scanner scanner = new Scanner(System.in);
 
     @Override
     public int size() {
@@ -128,11 +130,10 @@ public class ArrayList implements List {
     }
 
     public <T> boolean isFull(java.util.ArrayList<T> arrayList){
-        return arrayList.size() >= CAPACITY;
+        return arrayList.size() == CAPACITY;
     }
 
     public java.util.ArrayList<String> addElements() {
-        Scanner scanner = new Scanner(System.in);
         java.util.ArrayList<String> list = createArrayList();
         try{
             if (list != null){
@@ -141,7 +142,7 @@ public class ArrayList implements List {
                     String element = scanner.next();
                     boolean isSuccess = list.add(element);
                     if (isSuccess){
-                        System.out.println("Element is added successfully.");
+                        System.out.println(element + " is added successfully.");
                     }else {
                         System.out.println("Fail.");
                     }
@@ -155,8 +156,7 @@ public class ArrayList implements List {
         return list;
     }
 
-    public String accessElement(List<String> list) {
-        Scanner scanner = new Scanner(System.in);
+    public void accessElement(List<String> list) {
         String element = "";
         try {
             if (list != null) {
@@ -164,6 +164,7 @@ public class ArrayList implements List {
                     System.out.print("Input a position to access to element: ");
                     Integer pos = scanner.nextInt();
                     element = list.get(pos);
+                    System.out.println(element + " has been accessed.");
                 }
             }
         } catch (InputMismatchException inputMismatchException) {
@@ -171,11 +172,9 @@ public class ArrayList implements List {
         } catch (Exception ex) {
             System.out.println("Exception: " + ex.getMessage());
         }
-        return element;
     }
 
     private List<String> changeElementInArrayList(List<String> list) {
-        Scanner scanner = new Scanner(System.in);
         try {
             if (list != null) {
                 if (!list.isEmpty()) {
@@ -184,7 +183,7 @@ public class ArrayList implements List {
                     System.out.print("Input an element to change: ");
                     String element = scanner.next();
                     String result = list.set(pos, element);
-                    System.out.println("Element is changed: " + result);
+                    System.out.println(result + "has been changed.");
                 }
             }
         } catch (InputMismatchException inputMismatchException) {
@@ -263,7 +262,7 @@ public class ArrayList implements List {
     private void load() {
         List<String> list = addElements();
         print(list);
-        System.out.println(accessElement(list));
+        accessElement(list);
         System.out.println(changeElementInArrayList(list));
         System.out.println(removeElement(list));
         System.out.println("Check element has exist: " + checkElementHasExist(list));
