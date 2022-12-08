@@ -187,7 +187,7 @@ public class ArrayDeque implements Deque {
     }
 
     public <T> boolean isFull(java.util.ArrayDeque<T> arrayDeque) {
-        return arrayDeque.size() >= CAPACITY;
+        return arrayDeque.size() == CAPACITY;
     }
 
     public java.util.ArrayDeque<String> addElementsString() {

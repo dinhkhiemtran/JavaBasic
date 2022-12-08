@@ -112,7 +112,7 @@ public class PriorityQueue implements Queue {
     }
 
     private <T> boolean isFull(java.util.PriorityQueue<T> priority) {
-        return priority.size() >= CAPACITY;
+        return priority.size() == CAPACITY;
     }
 
     private java.util.PriorityQueue<Integer> offerElementsInteger() {

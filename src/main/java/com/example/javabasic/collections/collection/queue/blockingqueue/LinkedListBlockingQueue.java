@@ -143,7 +143,7 @@ public class LinkedListBlockingQueue implements BlockingQueue {
     }
 
     public <T> boolean isFull(BlockingQueue<T> blockingQueue) {
-        return blockingQueue.size() >= CAPACITY;
+        return blockingQueue.size() == CAPACITY;
     }
 
     public BlockingQueue<String> addElements() {

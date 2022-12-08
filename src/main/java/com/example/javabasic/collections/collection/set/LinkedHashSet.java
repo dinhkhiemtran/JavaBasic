@@ -79,7 +79,7 @@ public class LinkedHashSet implements Set {
     }
 
     public <T> boolean isFull(java.util.LinkedHashSet<T> linkedHashSet) {
-        return linkedHashSet.size() >= CAPACITY;
+        return linkedHashSet.size() == CAPACITY;
     }
 
     public java.util.LinkedHashSet<String> addElementsString() {

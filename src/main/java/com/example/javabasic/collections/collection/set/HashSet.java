@@ -78,7 +78,7 @@ public class HashSet implements Set {
     }
 
     public <T> boolean isFull(java.util.HashSet<T> set) {
-        return set.size() >= CAPACITY;
+        return set.size() == CAPACITY;
     }
 
     public java.util.HashSet<String> addElementsString() {
